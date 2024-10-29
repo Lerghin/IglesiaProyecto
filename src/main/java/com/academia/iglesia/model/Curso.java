@@ -24,6 +24,8 @@ public class Curso {
    private String nombreCurso;
    @DBRef
    private  List<Miembro> participantes;
+   @DBRef
+   private  List<Professor> professor;
    private String descripcion;
    private List<Modulo> moduloList;
 

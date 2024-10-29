@@ -9,6 +9,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.mongodb.core.mapping.DBRef;
+import org.springframework.scheduling.support.SimpleTriggerContext;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -23,6 +24,6 @@ public class CursoDTO {
     private String descripcion;
     private List<ModuloDTO> moduloList;
     private List<MiembroDTO> miembroDTOList;
-
+    private List<String> cedulaProfessor;
 
 }

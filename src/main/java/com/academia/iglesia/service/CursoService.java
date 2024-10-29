@@ -6,9 +6,11 @@ import com.academia.iglesia.dto.ModuloDTO;
 import com.academia.iglesia.model.Curso;
 import com.academia.iglesia.model.Miembro;
 import com.academia.iglesia.model.Modulo;
+import com.academia.iglesia.model.Professor;
 import com.academia.iglesia.repository.ICursoRepository;
 import com.academia.iglesia.repository.IModuloRepository;
 import com.academia.iglesia.repository.MiembrosRepository;
+import com.academia.iglesia.repository.ProfessorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +24,8 @@ public class CursoService  implements  ICursoService{
     @Autowired
     private MiembrosRepository iMiembrosRepository;
     @Autowired
+    private ProfessorRepository professorRepository;
+    @Autowired
     private IModuloRepository moduloRepository;
     @Override
     public List<Curso> get() {
@@ -31,6 +35,7 @@ public class CursoService  implements  ICursoService{
     public List<CursoDTO> getDTOCurso() {
         List<Curso> cursos=this.get();
         List<CursoDTO> cursoDTOS= new ArrayList<>();
+
         for(Curso curso: cursos){
            CursoDTO cursoDTO= new CursoDTO();
            cursoDTO.setNombreCurso(curso.getNombreCurso());
@@ -63,9 +68,16 @@ public class CursoService  implements  ICursoService{
     }
 
     @Override
+    public Professor FindByCedula(String cedula) {
+        Professor professor= professorRepository.findByCedula(cedula);
+        return professor;
+    }
+
+    @Override
     public Curso save(CursoDTO curso) {
         List<Miembro> miembroList= new ArrayList<>();
         List<Modulo> moduloList= new ArrayList<>();
+        Professor professor=this.FindByCedula(curso.getCedulaProfessor());
         for(MiembroDTO miembroDTO: curso.getMiembroDTOList()){
             Miembro miembro= iMiembrosRepository.findByCedula(miembroDTO.getCedula());
             miembroList.add(miembro);
@@ -83,6 +95,7 @@ public class CursoService  implements  ICursoService{
         }
 
         Curso cursoSaved= new Curso();
+        cursoSaved.setProfessor(professor);
         cursoSaved.setNombreCurso(curso.getNombreCurso());
         cursoSaved.setDescripcion(curso.getDescripcion());
         cursoSaved.setFecha_inicio(curso.getFecha_inicio());

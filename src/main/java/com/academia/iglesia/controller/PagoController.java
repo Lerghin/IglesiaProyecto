@@ -43,7 +43,7 @@ public class PagoController {
     }
 
 
-    @GetMapping("/get/{id}")
+    @GetMapping("/get/{idPago}")
     public Pago find(@PathVariable String idPago) throws  RuntimeException{
        Pago pago= pagoService.find(idPago);
         if (pago == null) {
@@ -52,7 +52,7 @@ public class PagoController {
         return pago;
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/{idPago}")
     public Pago edit(@PathVariable String idPago, @RequestBody Pago pago) throws  RuntimeException{
        Pago existingPago = pagoService.find(idPago); // Check for existing member before edit
         if (existingPago == null) {
