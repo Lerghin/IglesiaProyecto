@@ -35,9 +35,9 @@ public class CursoController {
         return cursos;
     }
     @PostMapping("/create")
-    public ResponseEntity<Curso> create(@RequestBody CursoDTO curso) {
+    public String create(@RequestBody CursoDTO curso) {
         Curso curso1 = cursoService.save(curso);
-        return ResponseEntity.ok(curso1);
+        return "Creado Correctamente";
     }
 
 

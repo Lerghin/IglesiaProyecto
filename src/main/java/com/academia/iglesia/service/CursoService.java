@@ -3,6 +3,7 @@ package com.academia.iglesia.service;
 import com.academia.iglesia.dto.CursoDTO;
 import com.academia.iglesia.dto.MiembroDTO;
 import com.academia.iglesia.dto.ModuloDTO;
+import com.academia.iglesia.dto.ProfessorDTO;
 import com.academia.iglesia.model.Curso;
 import com.academia.iglesia.model.Miembro;
 import com.academia.iglesia.model.Modulo;
@@ -32,6 +33,9 @@ public class CursoService  implements  ICursoService{
         List<Curso> cursos= cursoRepository.findAll();
         return cursos;
     }
+
+
+
     public List<CursoDTO> getDTOCurso() {
         List<Curso> cursos=this.get();
         List<CursoDTO> cursoDTOS= new ArrayList<>();
@@ -43,6 +47,16 @@ public class CursoService  implements  ICursoService{
            cursoDTO.setFecha_fin(curso.getFecha_fin());
            cursoDTO.setDescripcion(curso.getDescripcion());
            cursoDTO.setIdCurso(curso.getIdCurso());
+           List<ProfessorDTO> professorDTOList=new ArrayList<>();
+         for(Professor professor: curso.getProfessor()){
+
+             ProfessorDTO professorDTO= new ProfessorDTO();
+             professorDTO.setCedula(professor.getCedula());
+             professorDTO.setName(professor.getName());
+             professorDTO.setLastName(professor.getLastName());
+             professorDTOList.add(professorDTO);
+         }
+         cursoDTO.setProfessorDTOS(professorDTOList);
            List<ModuloDTO> moduloDTOS= new ArrayList<>();
            for(Modulo modulo: curso.getModuloList()){
                ModuloDTO moduloDTO= new ModuloDTO();
@@ -77,7 +91,7 @@ public class CursoService  implements  ICursoService{
     public Curso save(CursoDTO curso) {
         List<Miembro> miembroList= new ArrayList<>();
         List<Modulo> moduloList= new ArrayList<>();
-        Professor professor=this.FindByCedula(curso.getCedulaProfessor());
+        List<Professor> professorList=new ArrayList<>();
         for(MiembroDTO miembroDTO: curso.getMiembroDTOList()){
             Miembro miembro= iMiembrosRepository.findByCedula(miembroDTO.getCedula());
             miembroList.add(miembro);
@@ -93,9 +107,16 @@ public class CursoService  implements  ICursoService{
           moduloList.add(moduloSaved);
 
         }
+        for(ProfessorDTO professorDTO: curso.getProfessorDTOS()){
+            Professor professor= this.FindByCedula(professorDTO.getCedula());
+             if(professor==null){
+                 throw  new RuntimeException("No existe profesor con esa cedula");
+             }
+            professorList.add(professor);
+        }
 
         Curso cursoSaved= new Curso();
-        cursoSaved.setProfessor(professor);
+        cursoSaved.setProfessor(professorList);
         cursoSaved.setNombreCurso(curso.getNombreCurso());
         cursoSaved.setDescripcion(curso.getDescripcion());
         cursoSaved.setFecha_inicio(curso.getFecha_inicio());

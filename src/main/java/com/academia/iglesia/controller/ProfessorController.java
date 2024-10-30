@@ -4,8 +4,10 @@ import com.academia.iglesia.model.Pago;
 import com.academia.iglesia.model.Professor;
 import com.academia.iglesia.service.IProfessorService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -27,11 +29,19 @@ private IProfessorService profeServ;
         return profes;
     }
     @PostMapping("/create")
-    public Professor create(@RequestBody Professor pro){
+    public String create(@RequestBody Professor pro){
+         List<Professor> professorList= this.get();
+         for(Professor professor: professorList){
+             if(pro.getCedula().equalsIgnoreCase(professor.getCedula())){
+                 throw new ResponseStatusException(HttpStatus.CONFLICT, "La cédula ya está registrada");
+             }
+             else{
+                Professor professorSaved= profeServ.save(professor);
 
-        Professor professor= profeServ.save(pro);
+             }
 
-        return  professor;
+         }
+        return  "Registrado con exito";
     }
 
     @DeleteMapping("/delete/{idProfessor}")

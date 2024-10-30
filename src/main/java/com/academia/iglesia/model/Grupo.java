@@ -13,10 +13,10 @@ import java.util.List;
 public class Grupo {
    @Id
     private String idGrupo;
-    private int numeroGrupo;
+    private String numeroGrupo;
     @DBRef
     private List<Miembro> miembroList;
-    private String descripcion;
+
 
 
 }
