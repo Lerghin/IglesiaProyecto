@@ -51,9 +51,9 @@ public class NotaController {
     }
 
     @DeleteMapping("/delete/{idNota}")
-    public ResponseEntity<Object> delete(@PathVariable String idNota ) throws RuntimeException  {
+    public String delete(@PathVariable String idNota ) throws RuntimeException  {
         notaService.delete(idNota);
-        return ResponseEntity.noContent().build();
+        return "Borrado correctamente";
 
     }
 

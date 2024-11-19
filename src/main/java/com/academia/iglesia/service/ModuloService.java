@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class ModuloService implements  IModuloService{
+public class  ModuloService implements  IModuloService{
     @Autowired
     private IModuloRepository moduloRepository;
     @Override
@@ -27,6 +27,7 @@ public class ModuloService implements  IModuloService{
         for(Modulo modulo: moduloList){
             ModuloCursoDTO moduloDTO= new ModuloCursoDTO();
             moduloDTO.setIdModulo(modulo.getIdModulo());
+            moduloDTO.setIdCurso(modulo.getCurso().getIdCurso());
             moduloDTO.setNumModulo(modulo.getNumModulo());
             moduloDTO.setDescripcion(modulo.getDescripcion());
             moduloDTO.setNombreCurso(modulo.getCurso().getNombreCurso());

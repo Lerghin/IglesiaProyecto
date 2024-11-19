@@ -1,11 +1,14 @@
 package com.academia.iglesia.controller;
 
+import com.academia.iglesia.dto.ModuloNotaDTO;
 import com.academia.iglesia.model.Miembro;
+import com.academia.iglesia.model.Modulo;
 import com.academia.iglesia.service.IMiembroService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 @CrossOrigin(origins = "http://localhost:3000/")
 @RestController
@@ -30,9 +33,9 @@ public class MiembroController {
     }
 
     @DeleteMapping("/delete/{idMiembro}")
-    public ResponseEntity<Object> delete(@PathVariable String idMiembro ) throws RuntimeException  {
+    public String delete(@PathVariable String idMiembro ) throws RuntimeException  {
         miembroService.delete(idMiembro);
-        return ResponseEntity.noContent().build();
+        return "Borrado Correctamente";
 
     }
 
