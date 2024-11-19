@@ -31,6 +31,8 @@ public class  ModuloService implements  IModuloService{
             moduloDTO.setNumModulo(modulo.getNumModulo());
             moduloDTO.setDescripcion(modulo.getDescripcion());
             moduloDTO.setNombreCurso(modulo.getCurso().getNombreCurso());
+            moduloDTO.setFecha_inicio(modulo.getCurso().getFecha_inicio());
+            moduloDTO.setFecha_fin(modulo.getCurso().getFecha_fin());
             moduloCursoDTOS.add(moduloDTO);
         }
         return  moduloCursoDTOS;
