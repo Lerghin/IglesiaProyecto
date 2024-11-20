@@ -79,5 +79,12 @@ private IProfessorService profeServ;
 
     }
 
+    @GetMapping("/get/number")
+    public Integer miembrosNumber() throws  RuntimeException{
+        int count= profeServ.countProfessor();
+        return count;
+    }
+
+
 
 }

@@ -1,6 +1,7 @@
 package com.academia.iglesia.controller;
 
 import com.academia.iglesia.dto.ModuloNotaDTO;
+import com.academia.iglesia.dto.PercentMiembrosDTO;
 import com.academia.iglesia.model.Miembro;
 import com.academia.iglesia.model.Modulo;
 import com.academia.iglesia.service.IMiembroService;
@@ -48,6 +49,18 @@ public class MiembroController {
         }
         return miembro;
     }
+    @GetMapping("/get/number")
+    public Integer miembrosNumber() throws  RuntimeException{
+        int count= miembroService.countMember();
+        return count;
+    }
+    @GetMapping("/get/percent")
+    public PercentMiembrosDTO percentMiembros() throws  RuntimeException{
+       PercentMiembrosDTO percentMiembrosDTO= miembroService.percent();
+        return percentMiembrosDTO;
+    }
+
+
 
     @PutMapping("/{idMiembro}")
     public Miembro editMiembro(@PathVariable String idMiembro, @RequestBody Miembro miembro) throws  RuntimeException{

@@ -1,5 +1,6 @@
 package com.academia.iglesia.service;
 
+import com.academia.iglesia.model.Miembro;
 import com.academia.iglesia.model.Professor;
 import com.academia.iglesia.repository.ProfessorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,4 +53,16 @@ public class ProfessorService implements  IProfessorService {
         Professor professor= profeRepo.findByCedula(cedula);
         return professor;
     }
+
+    @Override
+    public Integer countProfessor() {
+        int count=0;
+        List<Professor> professors= this.get();
+        for(Professor professor: professors){
+            count= count+1;
+        }
+        return count;
+    }
+
+
 }

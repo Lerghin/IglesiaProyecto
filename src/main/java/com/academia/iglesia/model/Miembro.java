@@ -32,6 +32,7 @@ public class Miembro {
     private String apellido;
     private String direccion;
     private String ocupacion;
+    private Sexo sexo;
     private String telefono;
     private String email;
     private StatusMiembro status;

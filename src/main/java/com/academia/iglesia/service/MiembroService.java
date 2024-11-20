@@ -1,6 +1,8 @@
 package com.academia.iglesia.service;
 
+import com.academia.iglesia.dto.PercentMiembrosDTO;
 import com.academia.iglesia.model.Miembro;
+import com.academia.iglesia.model.Sexo;
 import com.academia.iglesia.repository.MiembrosRepository;
 import com.mongodb.DuplicateKeyException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +11,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+
+import static com.academia.iglesia.model.Sexo.*;
 
 @Service
 public class MiembroService implements  IMiembroService {
@@ -53,6 +57,7 @@ public class MiembroService implements  IMiembroService {
       miembroFind.setNombre(miembro.getNombre());
       miembroFind.setApellido(miembro.getApellido());
       miembroFind.setCedula(miembro.getCedula());
+      miembroFind.setSexo(miembro.getSexo());
       miembroFind.setDireccion(miembro.getDireccion());
       miembroFind.setTelefono(miembro.getTelefono());
       miembroFind.setFecha_nacimiento(miembro.getFecha_nacimiento());
@@ -61,7 +66,44 @@ public class MiembroService implements  IMiembroService {
       return miembroFind;
     }
 
+    public Integer countMember(){
+      int count=0;
+      List<Miembro> miembroList= this.getMiembros();
+      for(Miembro miembro: miembroList){
+          count= count+1;
+      }
+        return count;
+    }
 
 
+   public PercentMiembrosDTO percent(){
+        PercentMiembrosDTO percentMiembrosDTO= new PercentMiembrosDTO();
+        percentMiembrosDTO.setFillMen("#C3EBFA");
+        percentMiembrosDTO.setFillWomen("#FAE27C");
+        percentMiembrosDTO.setFillTot("white");
+        int total= this.countMember();
+        List<Miembro> miembroList= this.getMiembros();
+        int countMen= 0;
+       int countWomen= 0;
+       double porcentWomen=0.00;
+       double porcentMen=0.00;
+       for(Miembro miembro: miembroList){
+            if(miembro.getSexo()== FEMENINO){
+            countWomen=countWomen+1;
+            porcentWomen= (countWomen*100)/total;
+            }else{
+                countMen=countMen+1;
+                porcentMen= (countMen*100)/total;
+            }
+        }
+        percentMiembrosDTO.setTotal(total);
+        percentMiembrosDTO.setCountMen(countMen);
+        percentMiembrosDTO.setCountWomen(countWomen);
+        percentMiembrosDTO.setPorcentWomen(porcentWomen);
+        percentMiembrosDTO.setPorcenMen(porcentMen);
+
+
+       return percentMiembrosDTO;
+   }
 
 }

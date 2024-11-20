@@ -12,4 +12,5 @@ public interface IProfessorService {
     public Professor find(String  idProfessor);
     public Professor edit(String idProfessor, Professor pro);
     public Professor findByCedula(String cedula);
+    public Integer countProfessor();
 }
