@@ -4,6 +4,7 @@ import com.academia.iglesia.dto.PercentMiembrosDTO;
 import com.academia.iglesia.model.Miembro;
 
 import java.util.List;
+import java.util.Map;
 
 public interface IMiembroService {
 
@@ -14,7 +15,7 @@ public interface IMiembroService {
     public Miembro editMiembro(String idMiembro, Miembro miembro);
     public Integer countMember();
     public PercentMiembrosDTO percent();
-
+    public Map<String, Integer> obtenerDistribucionEdad();
 
 
 }

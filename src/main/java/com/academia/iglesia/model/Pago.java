@@ -21,5 +21,6 @@ public class Pago {
     private String metodoPago;
     private String referencia;
     private String observacion;
+    private Double monto;
 
 }

@@ -8,7 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 @CrossOrigin(origins = "http://localhost:3000/")
 @RestController
 @RequestMapping("/pago")
@@ -27,12 +30,36 @@ public class PagoController {
 
         return pagos;
     }
+
+
+    @GetMapping("/get/ingresos")
+    public Map<String, Double> getIngresos() {
+        List<Pago> pagos = pagoService.get();
+        if (pagos.isEmpty()) {
+            throw new RuntimeException("No payments found");
+        }
+
+        Map<String, Double> ingresosPorMes = new HashMap<>();
+
+        for (Pago pago : pagos) {
+            // Extraer el mes y el año de la fecha de pago (aquí usamos "MMMM yyyy" para obtener el mes y el año)
+            String mes = pago.getFecha_pago().getMonth().toString() + " " + pago.getFecha_pago().getYear();
+
+            // Sumar el monto del pago al total del mes
+            double monto = pago.getMonto();  // Suponiendo que 'getMonto()' devuelve el valor del pago
+            ingresosPorMes.put(mes, ingresosPorMes.getOrDefault(mes, 0.0) + monto);
+        }
+
+        return ingresosPorMes;
+    }
+
+
     @PostMapping("/create")
-    public Pago create(@RequestBody Pago pago){
+    public String create(@RequestBody Pago pago){
 
        Pago pago1= pagoService.save(pago);
 
-        return  pago1;
+        return  "Creado Satisfactoriamente";
     }
 
     @DeleteMapping("/delete/{idPago}")

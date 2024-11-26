@@ -10,7 +10,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static com.academia.iglesia.model.Sexo.*;
 
@@ -105,5 +107,38 @@ public class MiembroService implements  IMiembroService {
 
        return percentMiembrosDTO;
    }
+
+
+    public Map<String, Integer> obtenerDistribucionEdad() {
+        List<Miembro> miembros = miembrosRepository.findAll();
+        Map<String, Integer> distribucion = new HashMap<>();
+
+        for (Miembro miembro : miembros) {
+            int edad = miembro.getEdad();
+            String rangoEdad = obtenerRangoEdad(edad);
+            distribucion.put(rangoEdad, distribucion.getOrDefault(rangoEdad, 0) + 1);
+        }
+
+        return distribucion;
+    }
+
+    private String obtenerRangoEdad(int edad) {
+        if (edad >= 0 && edad <= 10) {
+            return "0-10";
+        } else if (edad >= 11 && edad <= 20) {
+            return "11-20";
+        } else if (edad >= 21 && edad <= 30) {
+            return "21-30";
+        } else if (edad >= 31 && edad <= 40) {
+            return "31-40";
+        } else if (edad >= 41 && edad <= 50) {
+            return "41-50";
+        } else if (edad >= 51 && edad <= 60) {
+            return "51-60";
+        } else {
+            return "61+";
+        }
+    }
+
 
 }

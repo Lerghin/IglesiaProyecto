@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+
 @CrossOrigin(origins = "http://localhost:3000/")
 @RestController
 @RequestMapping("/miembro")
@@ -71,6 +73,10 @@ public class MiembroController {
         Miembro miembroEdited = miembroService.editMiembro(idMiembro, miembro);
         return miembroEdited;
 
+    }
+    @GetMapping("/distribucion-edad")
+    public Map<String, Integer> obtenerDistribucionEdad() {
+        return miembroService.obtenerDistribucionEdad();
     }
 
 

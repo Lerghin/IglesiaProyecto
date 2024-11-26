@@ -1,7 +1,9 @@
 package com.academia.iglesia.service;
 
+import com.academia.iglesia.model.Miembro;
 import com.academia.iglesia.model.Pago;
 import com.academia.iglesia.repository.IPagoRepository;
+import com.academia.iglesia.repository.MiembrosRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +13,8 @@ import java.util.List;
 public class PagoService implements  IPagoService {
     @Autowired
     private IPagoRepository pagoRepository;
+    @Autowired
+    private MiembrosRepository miembrosRepository;
 
     @Override
     public List<Pago> get() {
@@ -20,7 +24,15 @@ public class PagoService implements  IPagoService {
 
     @Override
     public Pago save(Pago pago) {
-        Pago pagoSaved= pagoRepository.save(pago);
+        Pago pagoSaved= new Pago();
+        pagoSaved.setFecha_pago(pago.getFecha_pago());
+        pagoSaved.setMetodoPago(pago.getMetodoPago());
+        pagoSaved.setReferencia(pago.getReferencia());
+        pagoSaved.setMonto(pago.getMonto());
+        pagoSaved.setObservacion(pago.getObservacion());
+        Miembro miembro= miembrosRepository.findByCedula(pago.getMiembro().getCedula());
+        pagoSaved.setMiembro(miembro);
+        pagoRepository.save(pagoSaved);
         return pagoSaved;
     }
 
