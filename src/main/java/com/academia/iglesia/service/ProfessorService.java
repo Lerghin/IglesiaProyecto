@@ -36,7 +36,7 @@ public class ProfessorService implements  IProfessorService {
     @Override
     public Professor edit(String idProfessor, Professor pro) {
       Professor professor = this.find(idProfessor);
-      professor.setIdProfessor(pro.getIdProfessor());
+
       professor.setCedula(pro.getCedula());
       professor.setEmail(pro.getEmail());
       professor.setAddress(pro.getAddress());
@@ -44,6 +44,7 @@ public class ProfessorService implements  IProfessorService {
       professor.setName(pro.getName());
       professor.setCursos(pro.getCursos());
       professor.setFecha_nacimiento(pro.getFecha_nacimiento());
+
       professor.setLastName(pro.getLastName());
       profeRepo.save(professor);
       return professor;

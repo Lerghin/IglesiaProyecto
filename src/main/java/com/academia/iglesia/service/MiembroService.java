@@ -64,6 +64,8 @@ public class MiembroService implements  IMiembroService {
       miembroFind.setTelefono(miembro.getTelefono());
       miembroFind.setFecha_nacimiento(miembro.getFecha_nacimiento());
       miembroFind.setOcupacion(miembro.getOcupacion());
+      miembroFind.setCursosRealizados(miembro.getCursosRealizados());
+      miembroFind.setFecha_ingreso(miembro.getFecha_ingreso());
       miembrosRepository.save(miembroFind);
       return miembroFind;
     }
