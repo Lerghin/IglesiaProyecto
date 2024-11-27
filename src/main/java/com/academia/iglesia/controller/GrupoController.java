@@ -67,13 +67,27 @@ public class GrupoController {
     }
 
 
-    @GetMapping("/get/{id}")
-    public Grupo find(@PathVariable String idGrupo) throws  RuntimeException{
+    @GetMapping("/get/{idGrupo}")
+    public GrupoDTO find(@PathVariable String idGrupo) throws  RuntimeException{
         Grupo grupo= grupoService.find(idGrupo);
         if (grupo == null) {
             throw new RuntimeException("Member with ID " + idGrupo + " not found");
         }
-        return grupo;
+        GrupoDTO grupoDTO= new GrupoDTO();
+        grupoDTO.setIdGrupo(grupo.getIdGrupo());
+        grupoDTO.setNumeroGrupo(grupo.getNumeroGrupo());
+        List<MiembroDTO> miembroDTOList= new ArrayList<>();
+        for(Miembro miembro: grupo.getMiembroList()){
+        MiembroDTO miembroDTO= new MiembroDTO();
+        miembroDTO.setIdMiembro(miembro.getIdMiembro());
+        miembroDTO.setNombre(miembro.getNombre());
+        miembroDTO.setCedula(miembro.getCedula());
+        miembroDTO.setApellido(miembro.getApellido());
+        miembroDTOList.add(miembroDTO);
+
+        }
+        grupoDTO.setMiembroList(miembroDTOList);
+        return grupoDTO;
     }
 
     @PutMapping("/{id}")

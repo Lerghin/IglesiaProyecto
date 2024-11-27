@@ -36,7 +36,7 @@ private IProfessorService profeServ;
                  throw new ResponseStatusException(HttpStatus.CONFLICT, "La cédula ya está registrada");
              }
              else{
-                Professor professorSaved= profeServ.save(professor);
+                Professor professorSaved= profeServ.save(pro);
 
              }
 
