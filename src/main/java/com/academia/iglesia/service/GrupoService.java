@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
 public class GrupoService  implements  IGrupoService {
@@ -28,17 +30,30 @@ public class GrupoService  implements  IGrupoService {
 
     @Override
     public Grupo save(GrupoDTO grupoDTO) {
+        // Obtener todos los miembros existentes solo una vez
+        Map<String, Miembro> miembroMap = miembrosRepository.findAll()
+                .stream()
+                .collect(Collectors.toMap(Miembro::getCedula, miembro -> miembro));
+
+        // Crear una nueva lista de miembros validados
         List<Miembro> miembroList = new ArrayList<>();
-        Grupo grupo = new Grupo();
-        grupo.setNumeroGrupo(grupoDTO.getNumeroGrupo());
         for (MiembroDTO miembroDTO : grupoDTO.getMiembroList()) {
-            Miembro miembro = miembrosRepository.findByCedula(miembroDTO.getCedula());
+            Miembro miembro = miembroMap.get(miembroDTO.getCedula());
+            if (miembro == null) {
+                throw new RuntimeException("No existe esa cédula: " + miembroDTO.getCedula());
+            }
             miembroList.add(miembro);
         }
+
+        // Crear y guardar el grupo
+        Grupo grupo = new Grupo();
+        grupo.setNumeroGrupo(grupoDTO.getNumeroGrupo());
         grupo.setMiembroList(miembroList);
         grupoRepository.save(grupo);
+
         return grupo;
     }
+
 
     @Override
     public void delete(String idGrupo) {
