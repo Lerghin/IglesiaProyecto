@@ -12,4 +12,6 @@ public interface IGrupoService {
     public void delete(String idGrupo);
     public Grupo find(String  idGrupo);
     public Grupo edit(String idGrupo, Grupo grupo);
+    public Grupo addMiembro(String idGrupo, String cedula);
+    public Grupo deleteMiembro(String idGrupo, String idMiembro);
 }

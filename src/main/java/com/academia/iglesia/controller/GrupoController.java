@@ -8,6 +8,7 @@ import com.academia.iglesia.model.Miembro;
 import com.academia.iglesia.service.ICursoService;
 import com.academia.iglesia.service.IGrupoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -90,9 +91,9 @@ public class GrupoController {
         return grupoDTO;
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/{idGrupo}")
     public Grupo edit(@PathVariable String idGrupo, @RequestBody Grupo grupo) throws  RuntimeException{
-        Grupo existingGrupo = grupoService.find(idGrupo); // Check for existing member before edit
+        Grupo existingGrupo = grupoService.find(idGrupo);
         if (existingGrupo == null) {
             throw new RuntimeException("Member with ID " + idGrupo + " not found");
         }
@@ -100,4 +101,50 @@ public class GrupoController {
         return grupoEdited;
 
     }
+    @PutMapping("add-member/{idGrupo}")
+    public ResponseEntity<?> addMember(@PathVariable String idGrupo, @RequestParam String cedula) {
+        try {
+            Grupo existingGrupo = grupoService.find(idGrupo);
+            if (existingGrupo == null) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                        .body("Grupo con ID " + idGrupo + " no encontrado");
+            }
+            Grupo grupoEdited = grupoService.addMiembro(idGrupo, cedula);
+            return ResponseEntity.ok(grupoEdited);
+        } catch (RuntimeException ex) {
+            // Enviar mensaje de error claro al frontend
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
+        } catch (Exception ex) {
+            // Manejo de cualquier otro error inesperado
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Ocurrió un error inesperado: " + ex.getMessage());
+        }
+    }
+
+    @PutMapping("remove-member/{idGrupo}")
+    public ResponseEntity<Grupo> removeMember(
+            @PathVariable String idGrupo,
+            @RequestParam String idMiembro) {
+
+        try {
+            // Buscar el grupo existente
+            Grupo existingGrupo = grupoService.find(idGrupo);
+            if (existingGrupo == null) {
+                throw new RuntimeException("Grupo con ID " + idGrupo + " no encontrado");
+            }
+
+            // Eliminar al miembro del grupo
+            Grupo grupoEdited = grupoService.deleteMiembro(idGrupo, idMiembro);
+            return ResponseEntity.ok(grupoEdited); // Retornar el grupo actualizado con código 200
+
+        } catch (RuntimeException e) {
+            // Manejo de errores
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(null); // Puedes agregar un mensaje de error más descriptivo si es necesario
+        }
+    }
+
+
+
+
 }
