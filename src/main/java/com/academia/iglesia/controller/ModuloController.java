@@ -44,9 +44,9 @@ public class ModuloController {
     }
 
     @DeleteMapping("/delete/{idModulo}")
-    public ResponseEntity<Object> delete(@PathVariable String idModulo ) throws RuntimeException  {
+    public String delete(@PathVariable String idModulo )   {
        moduloService.delete(idModulo);
-        return ResponseEntity.noContent().build();
+        return "Eliminado Correctamente";
 
     }
 

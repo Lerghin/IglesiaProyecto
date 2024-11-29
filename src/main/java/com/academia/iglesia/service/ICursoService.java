@@ -14,4 +14,5 @@ public interface ICursoService {
     public Curso edit(String idCurso, Curso curso);
     public List<CursoDTO> getDTOCurso();
     public Professor FindByCedula(String cedula);
+    public CursoDTO findDTOCurso(String idCurso);
 }

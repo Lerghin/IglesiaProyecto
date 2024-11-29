@@ -50,8 +50,8 @@ public class CursoController {
 
 
     @GetMapping("/get/{idCurso}")
-    public Curso find(@PathVariable String idCurso) throws  RuntimeException{
-        Curso curso= cursoService.find(idCurso);
+    public CursoDTO find(@PathVariable String idCurso) throws  RuntimeException{
+        CursoDTO curso= cursoService.findDTOCurso(idCurso);
         if (curso == null) {
             throw new RuntimeException("Member with ID " + idCurso + " not found");
         }

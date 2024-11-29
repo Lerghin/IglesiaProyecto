@@ -35,7 +35,7 @@ public class CursoService  implements  ICursoService{
     }
 
 
-
+    @Override
     public List<CursoDTO> getDTOCurso() {
         List<Curso> cursos=this.get();
         List<CursoDTO> cursoDTOS= new ArrayList<>();
@@ -54,6 +54,7 @@ public class CursoService  implements  ICursoService{
              professorDTO.setCedula(professor.getCedula());
              professorDTO.setName(professor.getName());
              professorDTO.setLastName(professor.getLastName());
+             professorDTO.setIdProfessor(professor.getIdProfessor());
              professorDTOList.add(professorDTO);
          }
          cursoDTO.setProfessorDTOS(professorDTOList);
@@ -80,6 +81,49 @@ public class CursoService  implements  ICursoService{
         }
         return cursoDTOS;
     }
+    @Override
+    public CursoDTO findDTOCurso(String idCurso){
+        Curso curso= this.find(idCurso);
+        CursoDTO cursoDTO= new CursoDTO();
+        cursoDTO.setIdCurso(curso.getIdCurso());
+        cursoDTO.setNombreCurso(curso.getNombreCurso());
+        cursoDTO.setDescripcion(curso.getDescripcion());
+        cursoDTO.setFecha_inicio(curso.getFecha_inicio());
+        cursoDTO.setFecha_fin(curso.getFecha_fin());
+
+        List<ProfessorDTO> professorDTOS= new ArrayList<>();
+        for(Professor professor: curso.getProfessor()){
+            ProfessorDTO professorDTO= new ProfessorDTO();
+            professorDTO.setCedula(professor.getCedula());
+            professorDTO.setName(professor.getName());
+            professorDTO.setLastName(professor.getLastName());
+            professorDTO.setIdProfessor(professor.getIdProfessor());
+            professorDTOS.add(professorDTO);
+        }
+        cursoDTO.setProfessorDTOS(professorDTOS);
+        List<MiembroDTO> miembroDTOS= new ArrayList<>();
+       for(Miembro miembro :curso.getParticipantes()){
+           MiembroDTO miembroDTO =new MiembroDTO();
+           miembroDTO.setNombre(miembro.getNombre());
+           miembroDTO.setApellido(miembro.getApellido());
+           miembroDTO.setCedula(miembro.getCedula());
+           miembroDTO.setIdMiembro(miembro.getIdMiembro());
+           miembroDTOS.add(miembroDTO);
+       }
+       cursoDTO.setMiembroDTOList(miembroDTOS);
+
+       List<ModuloDTO> moduloDTOS= new ArrayList<>();
+       for(Modulo  modulo: curso.getModuloList()){
+           ModuloDTO moduloDTO= new ModuloDTO();
+           moduloDTO.setIdModulo(modulo.getIdModulo());
+           moduloDTO.setNumModulo(modulo.getNumModulo());
+           moduloDTO.setDescripcion(modulo.getDescripcion());
+           moduloDTOS.add(moduloDTO);
+       }
+       cursoDTO.setModuloList(moduloDTOS);
+       return cursoDTO;
+    }
+
 
     @Override
     public Professor FindByCedula(String cedula) {
@@ -154,7 +198,9 @@ public class CursoService  implements  ICursoService{
         cursoFind.setDescripcion(curso.getDescripcion());
         cursoFind.setFecha_fin(curso.getFecha_fin());
         cursoFind.setFecha_inicio(curso.getFecha_inicio());
-        cursoFind.setParticipantes(curso.getParticipantes());
+        cursoFind.setParticipantes(cursoFind.getParticipantes());
+        cursoFind.setModuloList(cursoFind.getModuloList());
+        cursoFind.setProfessor(cursoFind.getProfessor());
         cursoRepository.save(cursoFind);
         return  cursoFind;
     }
