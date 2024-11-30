@@ -71,6 +71,7 @@ private IProfessorService profeServ;
 
 
 
+
     @GetMapping("/{cedula}")
     public Professor findByCedula(@PathVariable String cedula) throws  RuntimeException{
 

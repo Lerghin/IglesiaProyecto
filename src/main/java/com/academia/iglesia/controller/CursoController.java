@@ -3,6 +3,7 @@ package com.academia.iglesia.controller;
 import com.academia.iglesia.dto.CursoDTO;
 import com.academia.iglesia.model.Curso;
 import com.academia.iglesia.service.ICursoService;
+import com.academia.iglesia.service.IProfessorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +16,8 @@ import java.util.List;
 public class CursoController {
     @Autowired
     private ICursoService cursoService;
+    @Autowired
+    private IProfessorService professorService;
 
     @GetMapping("/get")
     public List<Curso> getSales() throws  RuntimeException{
@@ -66,6 +69,27 @@ public class CursoController {
         }
         Curso cursoEdited = cursoService.edit(idCurso,curso);
         return cursoEdited;
+
+    }
+
+    @PutMapping("/{cedula}/{idCurso}")
+    public String addProfCurso(@PathVariable String cedula,@PathVariable String idCurso) throws  RuntimeException{
+        Curso existingCurso = cursoService.find(idCurso); // Check for existing member before edit
+        if (existingCurso == null) {
+            throw new RuntimeException("Member with ID " + idCurso + " not found");
+        }
+        professorService.addProfesorCurso(cedula, idCurso); ;
+        return "Profesor agregado exitosamente";
+
+    }
+    @PutMapping("/delete/{cedula}/{idCurso}")
+    public String removeProfCurso(@PathVariable String cedula,@PathVariable String idCurso) throws  RuntimeException{
+        Curso existingCurso = cursoService.find(idCurso); // Check for existing member before edit
+        if (existingCurso == null) {
+            throw new RuntimeException("Member with ID " + idCurso + " not found");
+        }
+        professorService.removeProfessor(cedula, idCurso); ;
+        return "Profesor removido exitosamente";
 
     }
 }

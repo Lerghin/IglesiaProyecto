@@ -16,7 +16,7 @@ public class Modulo {
     private String idModulo;
     @DBRef
     private Curso curso;
-    private  String numModulo;
+    private  int numModulo;
     private String descripcion;
 
     @Override
