@@ -35,21 +35,31 @@ public class ModuloController {
 
         return moduloList;
     }
-    @PostMapping("/create")
-    public Modulo create(@RequestBody Modulo modulo){
+    @PostMapping("/create/{idCurso}")
+    public String create(@RequestBody Modulo modulo, @PathVariable String idCurso){
 
-       Modulo modulo1= moduloService.save(modulo);
+       Modulo modulo1= moduloService.save(modulo, idCurso);
 
-        return modulo1;
+
+        return "creado con exito";
     }
 
+
+
     @DeleteMapping("/delete/{idModulo}")
-    public String delete(@PathVariable String idModulo )   {
+    public String delete(@PathVariable String idModulo)   {
        moduloService.delete(idModulo);
         return "Eliminado Correctamente";
 
     }
+    @PutMapping("/delete/{idModulo}/{idCurso}")
+    public String editCurso(@PathVariable String idModulo, @PathVariable String idCurso) throws  RuntimeException{
+       Modulo modulo=this.find(idModulo);
+        moduloService.editCursoModulo(idCurso, modulo);
+        delete(idModulo);
+        return "Satisfactoriamente" ;
 
+    }
 
     @GetMapping("/get/{idModulo}")
     public Modulo find(@PathVariable String idModulo) throws  RuntimeException{
