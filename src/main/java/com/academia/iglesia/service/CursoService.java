@@ -205,7 +205,46 @@ public class CursoService  implements  ICursoService{
         return  cursoFind;
     }
 
-
+  public void addMemberCurso(String idCurso, String cedula) {
+      Curso curso = this.find(idCurso);
+      Miembro miembro = iMiembrosRepository.findByCedula(cedula);
+  
+      List<Miembro> miembroList = curso.getParticipantes();
+  
+      // Verificar si ya existe el miembro en la lista
+      boolean exists = miembroList.stream()
+              .anyMatch(existingMember -> existingMember.getCedula().equals(miembro.getCedula()));
+  
+      if (exists) {
+          throw new RuntimeException("Ya existe miembro en el curso");
+      }
+  
+      // Agregar el miembro y guardar el curso
+      miembroList.add(miembro);
+      curso.setParticipantes(miembroList);
+      cursoRepository.save(curso);
+  }
+  
+  
+  
+  
+   public void removeMemberCurso(String idCurso, String cedula) {
+       Curso curso = this.find(idCurso);
+       Miembro miembro = iMiembrosRepository.findByCedula(cedula);
+   
+       List<Miembro> miembroList = curso.getParticipantes();
+   
+       // Remover el miembro si existe en la lista
+       boolean removed = miembroList.removeIf(existingMember -> existingMember.getCedula().equals(miembro.getCedula()));
+   
+       if (removed) {
+        curso.setParticipantes(miembroList);
+           cursoRepository.save(curso);
+       } else {
+           throw new RuntimeException("El miembro no pertenece al curso");
+    }
+   }
+   
 
 
 }

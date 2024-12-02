@@ -15,4 +15,6 @@ public interface ICursoService {
     public List<CursoDTO> getDTOCurso();
     public Professor FindByCedula(String cedula);
     public CursoDTO findDTOCurso(String idCurso);
+    public void addMemberCurso(String idCurso, String cedula);
+    public void removeMemberCurso(String idCurso, String cedula);
 }

@@ -92,4 +92,26 @@ public class CursoController {
         return "Profesor removido exitosamente";
 
     }
+
+
+    @PutMapping("/add-member/{idCurso}/{cedula}")
+    public String addMemberCurso(@PathVariable String idCurso,@PathVariable String cedula) throws  RuntimeException{
+        Curso existingCurso = cursoService.find(idCurso); // Check for existing member before edit
+        if (existingCurso == null) {
+            throw new RuntimeException("Member with ID " + idCurso + " not found");
+        }
+        cursoService.addMemberCurso(idCurso, cedula); ;
+        return "Miembro agregado exitosamente";
+
+    }
+    @PutMapping("/delete-member/{idCurso}/{cedula}")
+    public String removeMemberCurso(@PathVariable String cedula,@PathVariable String idCurso) throws  RuntimeException{
+        Curso existingCurso = cursoService.find(idCurso); // Check for existing member before edit
+        if (existingCurso == null) {
+            throw new RuntimeException("Member with ID " + idCurso + " not found");
+        }
+        cursoService.removeMemberCurso(idCurso,cedula); ;
+        return "Profesor removido exitosamente";
+
+    }
 }
