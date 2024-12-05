@@ -2,10 +2,15 @@ package com.academia.iglesia.service;
 
 import com.academia.iglesia.dto.ModuloCursoDTO;
 import com.academia.iglesia.dto.ModuloDTO;
+import com.academia.iglesia.dto.ModuloNotaDTO;
+import com.academia.iglesia.dto.NotaMiembroDTO;
+import com.academia.iglesia.model.AprobacionCurso;
 import com.academia.iglesia.model.Curso;
 import com.academia.iglesia.model.Modulo;
+import com.academia.iglesia.model.Nota;
 import com.academia.iglesia.repository.ICursoRepository;
 import com.academia.iglesia.repository.IModuloRepository;
+import com.academia.iglesia.repository.INotaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,28 +25,73 @@ public class  ModuloService implements  IModuloService{
     private IModuloRepository moduloRepository;
     @Autowired
     private ICursoRepository cursoRepository;
+
+
+    @Autowired
+    private INotaRepository notaRepository;
     @Override
     public List<Modulo> get() {
         List<Modulo> moduloList= moduloRepository.findAll();
         return moduloList;
     }
 
-    public List<ModuloCursoDTO> getModuloDTO() {
-        List<Modulo> moduloList=this.get();
-        List<ModuloCursoDTO> moduloCursoDTOS=new ArrayList<>();
 
-        for(Modulo modulo: moduloList){
-            ModuloCursoDTO moduloDTO= new ModuloCursoDTO();
-            moduloDTO.setIdModulo(modulo.getIdModulo());
-            moduloDTO.setIdCurso(modulo.getCurso().getIdCurso());
+    @Override
+    public ModuloCursoDTO ModuloGetDTO(String idCurso) {
+        Curso curso= cursoRepository.findById(idCurso).orElseThrow(null);
+        System.out.println(curso);
+        ModuloCursoDTO moduloCursoDTO= new ModuloCursoDTO();
+        moduloCursoDTO.setIdCurso(curso.getIdCurso());
+        moduloCursoDTO.setNombreCurso(curso.getNombreCurso());
+        List<ModuloDTO> moduloDTOS= new ArrayList<>();
+        for(Modulo modulo: curso.getModuloList() ){
+            ModuloDTO moduloDTO= new ModuloDTO();
             moduloDTO.setNumModulo(modulo.getNumModulo());
             moduloDTO.setDescripcion(modulo.getDescripcion());
-            moduloDTO.setNombreCurso(modulo.getCurso().getNombreCurso());
-            moduloDTO.setFecha_inicio(modulo.getCurso().getFecha_inicio());
-            moduloDTO.setFecha_fin(modulo.getCurso().getFecha_fin());
-            moduloCursoDTOS.add(moduloDTO);
+            moduloDTO.setIdModulo(modulo.getIdModulo());
+            moduloDTOS.add(moduloDTO);
         }
-        return  moduloCursoDTOS;
+        moduloCursoDTO.setModuloDTOList(moduloDTOS);
+
+        return  moduloCursoDTO;
+    }
+
+    @Override
+    public List<ModuloNotaDTO> getModuloDTO() {
+        List<Modulo> moduloList=this.get();
+        List<ModuloNotaDTO> moduloNotaDTOList = new ArrayList<>();
+        List <Nota> notaList= notaRepository.findAll();
+
+        for(Modulo modulo: moduloList){
+            ModuloNotaDTO moduloNotaDTO= new ModuloNotaDTO();
+            moduloNotaDTO.setIdModulo(modulo.getIdModulo());
+            moduloNotaDTO.setIdCurso(modulo.getIdModulo());
+            moduloNotaDTO.setNumModulo(modulo.getNumModulo());
+            moduloNotaDTO.setDescripcion(modulo.getDescripcion());
+            moduloNotaDTO.setNombreCurso(modulo.getCurso().getNombreCurso());
+            moduloNotaDTO.setFecha_fin(modulo.getCurso().getFecha_fin());
+            moduloNotaDTO.setFecha_inicio(modulo.getCurso().getFecha_inicio());
+            List<NotaMiembroDTO> notaMiembroDTOs= new ArrayList<>();
+
+            for(Nota nota: notaList ){
+                boolean igualModulo= modulo.getIdModulo().equals(nota.getModulo().getIdModulo());
+                if( igualModulo){
+
+                    NotaMiembroDTO notaMiembroDTO= new NotaMiembroDTO();
+                    notaMiembroDTO.setIdModulo(modulo.getIdModulo());
+                    notaMiembroDTO.setNota(nota.getNota());
+                    notaMiembroDTO.setIdNota(nota.getIdNota());
+                    if(nota.getNota()>12){
+                        notaMiembroDTO.setStatusAprobacion(AprobacionCurso.APROBADO);
+                    }
+                    notaMiembroDTOs.add(notaMiembroDTO);
+                }
+
+            }
+            moduloNotaDTO.setNotaMiembroDTOList(notaMiembroDTOs);
+            moduloNotaDTOList.add(moduloNotaDTO);
+        }
+        return moduloNotaDTOList ;
     }
 
 
@@ -119,4 +169,5 @@ public class  ModuloService implements  IModuloService{
 
 
     }
+
 }

@@ -28,6 +28,7 @@ public class CursoService  implements  ICursoService{
     private ProfessorRepository professorRepository;
     @Autowired
     private IModuloRepository moduloRepository;
+
     @Override
     public List<Curso> get() {
         List<Curso> cursos= cursoRepository.findAll();
@@ -181,7 +182,13 @@ public class CursoService  implements  ICursoService{
 
     @Override
     public void delete(String idCurso) {
-      cursoRepository.deleteById(idCurso);
+
+        Curso curso = this.find(idCurso);
+        for(Modulo modulo: curso.getModuloList()){
+            moduloRepository.deleteById(modulo.getIdModulo());
+        }
+
+        cursoRepository.deleteById(idCurso);
     }
 
     @Override

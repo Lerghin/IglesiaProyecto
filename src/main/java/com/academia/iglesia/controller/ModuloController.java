@@ -1,6 +1,7 @@
 package com.academia.iglesia.controller;
 
 import com.academia.iglesia.dto.ModuloCursoDTO;
+import com.academia.iglesia.dto.ModuloNotaDTO;
 import com.academia.iglesia.model.Curso;
 import com.academia.iglesia.model.Modulo;
 import com.academia.iglesia.service.ICursoService;
@@ -26,9 +27,20 @@ public class ModuloController {
 
         return moduloList;
     }
+
+    @GetMapping("/getmodulodto/{idCurso}")
+    public ModuloCursoDTO getMDTO( @PathVariable  String idCurso) throws  RuntimeException{
+        ModuloCursoDTO modulo= moduloService.ModuloGetDTO(idCurso);
+        if (modulo != null) {
+            return modulo;
+        }
+        throw new RuntimeException("No members found");
+
+    }
+
     @GetMapping("/getmodulos")
-    public List<ModuloCursoDTO> getMDTO() throws  RuntimeException{
-        List<ModuloCursoDTO> moduloList= moduloService.getModuloDTO();
+    public List<ModuloNotaDTO> getMDTONOTA() throws  RuntimeException{
+        List<ModuloNotaDTO> moduloList= moduloService.getModuloDTO();
         if(moduloList.isEmpty()){
             throw new RuntimeException("No members found");
         }
@@ -38,7 +50,7 @@ public class ModuloController {
     @PostMapping("/create/{idCurso}")
     public String create(@RequestBody Modulo modulo, @PathVariable String idCurso){
 
-       Modulo modulo1= moduloService.save(modulo, idCurso);
+        Modulo modulo1= moduloService.save(modulo, idCurso);
 
 
         return "creado con exito";
@@ -48,13 +60,13 @@ public class ModuloController {
 
     @DeleteMapping("/delete/{idModulo}")
     public String delete(@PathVariable String idModulo)   {
-       moduloService.delete(idModulo);
+        moduloService.delete(idModulo);
         return "Eliminado Correctamente";
 
     }
     @PutMapping("/delete/{idModulo}/{idCurso}")
     public String editCurso(@PathVariable String idModulo, @PathVariable String idCurso) throws  RuntimeException{
-       Modulo modulo=this.find(idModulo);
+        Modulo modulo=this.find(idModulo);
         moduloService.editCursoModulo(idCurso, modulo);
         delete(idModulo);
         return "Satisfactoriamente" ;
@@ -63,7 +75,7 @@ public class ModuloController {
 
     @GetMapping("/get/{idModulo}")
     public Modulo find(@PathVariable String idModulo) throws  RuntimeException{
-       Modulo modulo= moduloService.find(idModulo);
+        Modulo modulo= moduloService.find(idModulo);
         if (modulo == null) {
             throw new RuntimeException("Member with ID " + idModulo + " not found");
         }
@@ -76,7 +88,7 @@ public class ModuloController {
         if (existingMo == null) {
             throw new RuntimeException("Member with ID " + idModulo + " not found");
         }
-       Modulo modEdited =  moduloService.edit(idModulo, modulo);
+        Modulo modEdited =  moduloService.edit(idModulo, modulo);
         return modEdited;
 
     }
