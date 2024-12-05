@@ -10,6 +10,6 @@ public class NotaMiembroDTO {
     private String idModulo;
     private double nota;
     private String cedula;
-
+    private AprobacionCurso aprobacionCurso;
 
 }

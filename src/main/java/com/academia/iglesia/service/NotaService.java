@@ -41,6 +41,7 @@ public class NotaService implements  INotaService {
             notaMiembroDTO.setIdNota(nota.getIdNota());
             notaMiembroDTO.setCedula(nota.getMiembro().getCedula());
             notaMiembroDTO.setIdModulo(nota.getModulo().getIdModulo());
+            notaMiembroDTO.setAprobacionCurso(nota.getAprobacionCurso());
             notas.add(notaMiembroDTO);
 
         }
@@ -55,7 +56,7 @@ public class NotaService implements  INotaService {
     }
     @Override
     public Nota saveNotaDTO(NotaMiembroDTO not) {
-        System.out.println(not);
+
         // Buscar el módulo asociado al ID del DTO
         Modulo modulo = moduloRepository.findById(not.getIdModulo())
                 .orElseThrow(() -> new RuntimeException("El módulo especificado no existe"));
@@ -74,9 +75,11 @@ public class NotaService implements  INotaService {
         boolean isMemberInCourse = curso.getParticipantes().stream()
                 .anyMatch(miembro -> miembro.getCedula().equals(miembroFind.getCedula()));
 
+
         if (!isMemberInCourse) {
             throw new RuntimeException("Este miembro no está inscrito en el curso");
         }
+
 
         // Crear y asignar valores a la nueva entidad Nota
         Nota nota = new Nota();
@@ -101,6 +104,7 @@ public class NotaService implements  INotaService {
                 notaMiembroDTO.setIdModulo(nota.getModulo().getIdModulo());
                 notaMiembroDTO.setNota(nota.getNota());
                 notaMiembroDTO.setIdNota(nota.getIdNota());
+                notaMiembroDTO.setAprobacionCurso(nota.getAprobacionCurso());
 
 
                notaMiembroDTOS.add(notaMiembroDTO);
