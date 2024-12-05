@@ -15,4 +15,20 @@ public class Nota {
     private double nota;
     @DBRef
     private Miembro miembro;
+    private AprobacionCurso aprobacionCurso;
+
+
+    // Método para evaluar la aprobación
+    public void evaluarAprobacion(double nota) {
+        if (nota >= 12) {
+            this.aprobacionCurso = AprobacionCurso.APROBADO;
+        } else {
+            this.aprobacionCurso = AprobacionCurso.REPROBADO;
+        }
+    }
+
+
 }
+
+
+

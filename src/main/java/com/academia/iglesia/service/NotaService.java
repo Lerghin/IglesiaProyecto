@@ -68,7 +68,24 @@ public class NotaService implements  INotaService {
         return nota;
     }
 
+    public List<NotaMiembroDTO> getNotasMiembro(String idModulo){
+        Modulo modulo= moduloRepository.findById(idModulo).orElseThrow(null);
+        List<NotaMiembroDTO> notaMiembroDTOS= new ArrayList<>();
+        for(Nota nota: this.get()){
+            boolean isEqual= nota.getModulo().getIdModulo().equals(modulo.getIdModulo());
+            if(isEqual){
+                NotaMiembroDTO notaMiembroDTO= new NotaMiembroDTO();
+                notaMiembroDTO.setCedula(nota.getMiembro().getCedula());
+                notaMiembroDTO.setIdModulo(nota.getModulo().getIdModulo());
+                notaMiembroDTO.setNota(nota.getNota());
+                notaMiembroDTO.setIdNota(nota.getIdNota());
+                notaMiembroDTO.setStatusAprobacion(nota.getAprobacionCurso());
 
+               notaMiembroDTOS.add(notaMiembroDTO);
+            }
+        }
+        return notaMiembroDTOS;
+    }
 
     @Override
     public void delete(String idNota) {

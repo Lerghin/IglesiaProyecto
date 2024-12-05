@@ -39,7 +39,7 @@ public class  ModuloService implements  IModuloService{
     @Override
     public ModuloCursoDTO ModuloGetDTO(String idCurso) {
         Curso curso= cursoRepository.findById(idCurso).orElseThrow(null);
-        System.out.println(curso);
+
         ModuloCursoDTO moduloCursoDTO= new ModuloCursoDTO();
         moduloCursoDTO.setIdCurso(curso.getIdCurso());
         moduloCursoDTO.setNombreCurso(curso.getNombreCurso());
