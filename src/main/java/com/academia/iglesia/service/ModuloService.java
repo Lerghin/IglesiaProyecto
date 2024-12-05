@@ -81,9 +81,7 @@ public class  ModuloService implements  IModuloService{
                     notaMiembroDTO.setIdModulo(modulo.getIdModulo());
                     notaMiembroDTO.setNota(nota.getNota());
                     notaMiembroDTO.setIdNota(nota.getIdNota());
-                    if(nota.getNota()>12){
-                        notaMiembroDTO.setStatusAprobacion(AprobacionCurso.APROBADO);
-                    }
+
                     notaMiembroDTOs.add(notaMiembroDTO);
                 }
 

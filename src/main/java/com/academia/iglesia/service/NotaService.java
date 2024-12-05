@@ -1,10 +1,8 @@
 package com.academia.iglesia.service;
 
 import com.academia.iglesia.dto.NotaMiembroDTO;
-import com.academia.iglesia.model.AprobacionCurso;
-import com.academia.iglesia.model.Miembro;
-import com.academia.iglesia.model.Modulo;
-import com.academia.iglesia.model.Nota;
+import com.academia.iglesia.model.*;
+import com.academia.iglesia.repository.ICursoRepository;
 import com.academia.iglesia.repository.IModuloRepository;
 import com.academia.iglesia.repository.INotaRepository;
 import com.academia.iglesia.repository.MiembrosRepository;
@@ -23,6 +21,8 @@ public class NotaService implements  INotaService {
     private MiembrosRepository miembrosRepository;
     @Autowired
     private IModuloRepository moduloRepository;
+    @Autowired
+    private ICursoRepository cursoRepository;
     @Override
     public List<Nota> get() {
 
@@ -41,8 +41,6 @@ public class NotaService implements  INotaService {
             notaMiembroDTO.setIdNota(nota.getIdNota());
             notaMiembroDTO.setCedula(nota.getMiembro().getCedula());
             notaMiembroDTO.setIdModulo(nota.getModulo().getIdModulo());
-            notaMiembroDTO.setStatusAprobacion(
-             nota.getNota()>=60? AprobacionCurso.APROBADO: AprobacionCurso.REPROBADO);
             notas.add(notaMiembroDTO);
 
         }
@@ -57,17 +55,41 @@ public class NotaService implements  INotaService {
     }
     @Override
     public Nota saveNotaDTO(NotaMiembroDTO not) {
-        Modulo modulo=moduloRepository.findById(not.getIdModulo()).orElseThrow(null);
-        Miembro miembro= miembrosRepository.findByCedula(not.getCedula());
-        Nota nota = new Nota() ;
-        nota.setNota(not.getNota());
+        System.out.println(not);
+        // Buscar el módulo asociado al ID del DTO
+        Modulo modulo = moduloRepository.findById(not.getIdModulo())
+                .orElseThrow(() -> new RuntimeException("El módulo especificado no existe"));
+
+        // Obtener el curso asociado al módulo
+        Curso curso = cursoRepository.findById(modulo.getCurso().getIdCurso())
+                .orElseThrow(() -> new RuntimeException("El curso asociado al módulo no existe"));
+
+        // Buscar el miembro por cédula
+        Miembro miembroFind = miembrosRepository.findByCedula(not.getCedula());
+        if (miembroFind == null) {
+            throw new RuntimeException("El miembro con la cédula especificada no existe");
+        }
+
+        // Verificar si el miembro pertenece al curso
+        boolean isMemberInCourse = curso.getParticipantes().stream()
+                .anyMatch(miembro -> miembro.getCedula().equals(miembroFind.getCedula()));
+
+        if (!isMemberInCourse) {
+            throw new RuntimeException("Este miembro no está inscrito en el curso");
+        }
+
+        // Crear y asignar valores a la nueva entidad Nota
+        Nota nota = new Nota();
+        nota.setMiembro(miembroFind);
         nota.setModulo(modulo);
-        nota.setMiembro(miembro);
-        notaRepository.save(nota);
+        nota.setNota(not.getNota());
 
-        return nota;
+        // Determinar la aprobación o reprobación según la nota
+        nota.setAprobacionCurso(not.getNota() > 12 ? AprobacionCurso.APROBADO : AprobacionCurso.REPROBADO);
+
+        // Guardar la nota en el repositorio
+        return notaRepository.save(nota);
     }
-
     public List<NotaMiembroDTO> getNotasMiembro(String idModulo){
         Modulo modulo= moduloRepository.findById(idModulo).orElseThrow(null);
         List<NotaMiembroDTO> notaMiembroDTOS= new ArrayList<>();
@@ -79,7 +101,7 @@ public class NotaService implements  INotaService {
                 notaMiembroDTO.setIdModulo(nota.getModulo().getIdModulo());
                 notaMiembroDTO.setNota(nota.getNota());
                 notaMiembroDTO.setIdNota(nota.getIdNota());
-                notaMiembroDTO.setStatusAprobacion(nota.getAprobacionCurso());
+
 
                notaMiembroDTOS.add(notaMiembroDTO);
             }
@@ -109,9 +131,7 @@ public class NotaService implements  INotaService {
                 notaMiembroDTO.setCedula(nota.getCedula());
                 notaMiembroDTO.setIdModulo(nota.getIdModulo());
                 notaMiembroDTO.setNota(nota.getNota());
-                notaMiembroDTO.setStatusAprobacion(
-                        nota.getNota() >= 60 ? AprobacionCurso.APROBADO : AprobacionCurso.REPROBADO
-                );
+
                 return notaMiembroDTO; // Retorna inmediatamente si se encuentra la nota
             }
         }

@@ -15,4 +15,5 @@ public interface INotaService {
     public Nota saveNotaDTO(NotaMiembroDTO not);
     public List<NotaMiembroDTO> getDTO();
     public NotaMiembroDTO findNota(String cedula, String idModulo);
+    public List<NotaMiembroDTO> getNotasMiembro(String idModulo);
 }

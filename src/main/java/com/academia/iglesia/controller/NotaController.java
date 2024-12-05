@@ -75,6 +75,16 @@ public class NotaController {
         return nota;
     }
 
+    @GetMapping("/getList/{idModulo}")
+    public List<NotaMiembroDTO> findNotaMiembros( @PathVariable String idModulo ) throws  RuntimeException{
+
+        List<NotaMiembroDTO> notaMiembroDTOS= notaService.getNotasMiembro(idModulo);
+        if (notaMiembroDTOS== null) {
+        throw new RuntimeException("No hay notas en este modulo");
+        }
+        return notaMiembroDTOS;
+    }
+
     @PutMapping("/{idNota}")
     public Nota edit(@PathVariable String idNota, @RequestBody Nota nota) throws  RuntimeException{
        Nota existingNota =  notaService.find(idNota); // Check for existing member before edit
