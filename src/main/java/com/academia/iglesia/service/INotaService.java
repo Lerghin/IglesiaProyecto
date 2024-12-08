@@ -11,7 +11,7 @@ public interface INotaService {
     public Nota save(Nota not);
     public void delete(String idNota);
     public Nota find(String  idNota);
-    public Nota edit(String idNota, Nota nota);
+    public Nota edit(String idNota, NotaMiembroDTO nota);
     public Nota saveNotaDTO(NotaMiembroDTO not);
     public List<NotaMiembroDTO> getDTO();
     public NotaMiembroDTO findNota(String cedula, String idModulo);

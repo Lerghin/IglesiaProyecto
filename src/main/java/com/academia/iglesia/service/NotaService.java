@@ -148,12 +148,18 @@ public class NotaService implements  INotaService {
 
 
     @Override
-    public Nota edit(String idNota, Nota nota) {
-        Nota notaFind= this.find(idNota);
-        notaFind.setModulo(nota.getModulo());
-        notaFind.setMiembro(nota.getMiembro());
-        notaFind.setNota(nota.getNota());
-        notaRepository.save(notaFind);
-        return  notaFind;
+    public Nota edit(String idNota, NotaMiembroDTO nota) {
+
+        Miembro miembro= miembrosRepository.findByCedula(nota.getCedula());
+        Modulo modulo= moduloRepository.findById(nota.getIdModulo()).orElseThrow(null);
+        Nota notaEdited= this.find(idNota);
+        notaEdited.setNota(nota.getNota());
+        notaEdited.setMiembro(miembro);
+        notaEdited.setModulo(modulo);
+        notaEdited.evaluarAprobacion(notaEdited.getNota());
+
+
+        notaRepository.save(notaEdited);
+        return  notaEdited;
     }
 }

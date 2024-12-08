@@ -86,7 +86,7 @@ public class NotaController {
     }
 
     @PutMapping("/{idNota}")
-    public Nota edit(@PathVariable String idNota, @RequestBody Nota nota) throws  RuntimeException{
+    public Nota edit(@PathVariable String idNota, @RequestBody NotaMiembroDTO nota) throws  RuntimeException{
        Nota existingNota =  notaService.find(idNota); // Check for existing member before edit
         if (existingNota == null) {
             throw new RuntimeException("Member with ID " + idNota + " not found");
