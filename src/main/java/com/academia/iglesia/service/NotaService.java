@@ -94,22 +94,21 @@ public class NotaService implements  INotaService {
         return notaRepository.save(nota);
     }
     public List<NotaMiembroDTO> getNotasMiembro(String idModulo){
-        Modulo modulo= moduloRepository.findById(idModulo).orElseThrow(null);
+        List<Nota> notaList= notaRepository.findByModulo(idModulo);
+
         List<NotaMiembroDTO> notaMiembroDTOS= new ArrayList<>();
-        for(Nota nota: this.get()){
-            boolean isEqual= nota.getModulo().getIdModulo().equals(modulo.getIdModulo());
-            if(isEqual){
-                NotaMiembroDTO notaMiembroDTO= new NotaMiembroDTO();
-                notaMiembroDTO.setCedula(nota.getMiembro().getCedula());
-                notaMiembroDTO.setIdModulo(nota.getModulo().getIdModulo());
-                notaMiembroDTO.setNota(nota.getNota());
-                notaMiembroDTO.setIdNota(nota.getIdNota());
-                notaMiembroDTO.setAprobacionCurso(nota.getAprobacionCurso());
 
-
+           for(Nota nota: notaList){
+               NotaMiembroDTO notaMiembroDTO= new NotaMiembroDTO();
+               notaMiembroDTO.setCedula(nota.getMiembro().getCedula());
+               notaMiembroDTO.setIdModulo(nota.getModulo().getIdModulo());
+               notaMiembroDTO.setAprobacionCurso(nota.getAprobacionCurso());
+               notaMiembroDTO.setIdNota(nota.getIdNota());
+               notaMiembroDTO.setNota(nota.getNota());
                notaMiembroDTOS.add(notaMiembroDTO);
-            }
-        }
+
+           }
+
         return notaMiembroDTOS;
     }
 
@@ -150,10 +149,14 @@ public class NotaService implements  INotaService {
     @Override
     public Nota edit(String idNota, Nota nota) {
         Nota notaFind= this.find(idNota);
-        notaFind.setModulo(nota.getModulo());
-        notaFind.setMiembro(nota.getMiembro());
         notaFind.setNota(nota.getNota());
+        nota.evaluarAprobacion(nota.getNota());
+        notaFind.setAprobacionCurso(nota.getAprobacionCurso());
+
         notaRepository.save(notaFind);
         return  notaFind;
     }
+
+
+
 }

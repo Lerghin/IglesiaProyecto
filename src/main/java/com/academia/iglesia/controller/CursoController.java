@@ -9,6 +9,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
+
 @CrossOrigin(origins = "http://localhost:3000/")
 @RestController
 @RequestMapping("/curso")
@@ -59,6 +61,11 @@ public class CursoController {
             throw new RuntimeException("Member with ID " + idCurso + " not found");
         }
         return curso;
+    }
+    @GetMapping("/getCedulas/{idCurso}")
+    public ResponseEntity<Map<String, String>> getCedulas(@PathVariable String idCurso) {
+        Map<String, String> cedulasNombres = cursoService.cedulasCursos(idCurso);
+        return ResponseEntity.ok(cedulasNombres);
     }
 
     @PutMapping("/{idCurso}")

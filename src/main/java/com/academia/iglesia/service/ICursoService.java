@@ -5,6 +5,7 @@ import com.academia.iglesia.model.Curso;
 import com.academia.iglesia.model.Professor;
 
 import java.util.List;
+import java.util.Map;
 
 public interface ICursoService {
     public List<Curso> get();
@@ -17,4 +18,5 @@ public interface ICursoService {
     public CursoDTO findDTOCurso(String idCurso);
     public void addMemberCurso(String idCurso, String cedula);
     public void removeMemberCurso(String idCurso, String cedula);
+    public Map<String, String> cedulasCursos(String idCurso);
 }

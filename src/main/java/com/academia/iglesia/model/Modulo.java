@@ -1,6 +1,7 @@
 package com.academia.iglesia.model;
 
 import lombok.Data;
+import lombok.ToString;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -15,9 +16,13 @@ public class Modulo {
     @Id
     private String idModulo;
     @DBRef
+
+    @ToString.Exclude
     private Curso curso;
     private  int numModulo;
     private String descripcion;
+
+
 
     @Override
     public boolean equals(Object o) {
