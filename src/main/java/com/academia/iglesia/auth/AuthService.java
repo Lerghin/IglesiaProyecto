@@ -51,7 +51,7 @@ public class AuthService {
       }
 
       User user= User.builder()
-              .username(request.userName)
+              .userName(request.userName)
               .password(passwordEncoder.encode(request.password))
               .build();
       userRepository.save(user);
@@ -69,7 +69,7 @@ public class AuthService {
       }
 
       User user = User.builder()
-              .username(request.getUserName())
+              .userName(request.getUserName())
               .password(passwordEncoder.encode(request.getPassword()))
               .build();
       userRepository.save(user);
