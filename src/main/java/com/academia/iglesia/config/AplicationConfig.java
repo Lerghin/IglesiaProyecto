@@ -15,8 +15,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
 @RequiredArgsConstructor
-public class AplcationConfig {
-
+public class AplicationConfig {
     private final IUserRepository userRepository;
 
     @Bean
@@ -40,6 +39,4 @@ public class AplcationConfig {
     public UserDetailsService userDetailsService(){
         return username -> userRepository.findByUserName(username).orElseThrow(()-> new UsernameNotFoundException("Usuario no encontrado"));
     }
-
-
 }

@@ -1,11 +1,15 @@
 package com.academia.iglesia.auth;
 
+import com.academia.iglesia.JWT.JwtService;
+import com.academia.iglesia.repository.IUserRepository;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,6 +19,8 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class AuthController {
     private final AuthService authService;
+    private final JwtService jwtService;
+    private final IUserRepository userRepository;
 
 
     @PostMapping("/login")
@@ -39,6 +45,24 @@ public class AuthController {
         }
     }
 
+
+
+    @GetMapping("/username")
+    public ResponseEntity<String> getUsername() {
+        try {
+            // Obtener detalles del usuario desde el contexto de seguridad
+            Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+            if (principal instanceof UserDetails) {
+                String username = ((UserDetails) principal).getUsername();
+                return ResponseEntity.ok(username);
+            } else {
+                return ResponseEntity.badRequest().body("Usuario no autenticado");
+            }
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body("Error al obtener el nombre de usuario: " + e.getMessage());
+        }
+    }
     @PostMapping("/logout")
     public String performLogout(HttpServletRequest request, HttpServletResponse response, Authentication authentication) {
         if (authentication != null) {
