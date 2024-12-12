@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-@CrossOrigin(origins = "http://localhost:3000/")
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/miembro")
 public class MiembroController {
@@ -51,6 +51,8 @@ public class MiembroController {
         }
         return miembro;
     }
+
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/get/number")
     public Integer miembrosNumber() throws  RuntimeException{
         int count= miembroService.countMember();

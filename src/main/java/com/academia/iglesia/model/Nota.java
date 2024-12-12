@@ -1,6 +1,7 @@
 package com.academia.iglesia.model;
 
 import lombok.Data;
+import lombok.ToString;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -11,9 +12,11 @@ public class Nota {
     @Id
     private String idNota;
     @DBRef
+    @ToString.Exclude
     private Modulo modulo;
     private double nota;
     @DBRef
+    @ToString.Exclude
     private Miembro miembro;
     private AprobacionCurso aprobacionCurso;
 

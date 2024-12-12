@@ -1,5 +1,6 @@
 package com.academia.iglesia.service;
 
+
 import com.academia.iglesia.dto.NotaMiembroDTO;
 import com.academia.iglesia.model.*;
 import com.academia.iglesia.repository.ICursoRepository;
@@ -94,28 +95,27 @@ public class NotaService implements  INotaService {
         return notaRepository.save(nota);
     }
     public List<NotaMiembroDTO> getNotasMiembro(String idModulo){
-        Modulo modulo= moduloRepository.findById(idModulo).orElseThrow(null);
+        List<Nota> notaList= notaRepository.findByModulo(idModulo);
+
         List<NotaMiembroDTO> notaMiembroDTOS= new ArrayList<>();
-        for(Nota nota: this.get()){
-            boolean isEqual= nota.getModulo().getIdModulo().equals(modulo.getIdModulo());
-            if(isEqual){
-                NotaMiembroDTO notaMiembroDTO= new NotaMiembroDTO();
-                notaMiembroDTO.setCedula(nota.getMiembro().getCedula());
-                notaMiembroDTO.setIdModulo(nota.getModulo().getIdModulo());
-                notaMiembroDTO.setNota(nota.getNota());
-                notaMiembroDTO.setIdNota(nota.getIdNota());
-                notaMiembroDTO.setAprobacionCurso(nota.getAprobacionCurso());
 
+        for(Nota nota: notaList){
+            NotaMiembroDTO notaMiembroDTO= new NotaMiembroDTO();
+            notaMiembroDTO.setCedula(nota.getMiembro().getCedula());
+            notaMiembroDTO.setIdModulo(nota.getModulo().getIdModulo());
+            notaMiembroDTO.setAprobacionCurso(nota.getAprobacionCurso());
+            notaMiembroDTO.setIdNota(nota.getIdNota());
+            notaMiembroDTO.setNota(nota.getNota());
+            notaMiembroDTOS.add(notaMiembroDTO);
 
-               notaMiembroDTOS.add(notaMiembroDTO);
-            }
         }
+
         return notaMiembroDTOS;
     }
 
     @Override
     public void delete(String idNota) {
-   notaRepository.deleteById(idNota);
+        notaRepository.deleteById(idNota);
     }
 
     @Override
@@ -148,18 +148,16 @@ public class NotaService implements  INotaService {
 
 
     @Override
-    public Nota edit(String idNota, NotaMiembroDTO nota) {
+    public Nota edit(String idNota, Nota nota) {
+        Nota notaFind= this.find(idNota);
+        notaFind.setNota(nota.getNota());
+        nota.evaluarAprobacion(nota.getNota());
+        notaFind.setAprobacionCurso(nota.getAprobacionCurso());
 
-        Miembro miembro= miembrosRepository.findByCedula(nota.getCedula());
-        Modulo modulo= moduloRepository.findById(nota.getIdModulo()).orElseThrow(null);
-        Nota notaEdited= this.find(idNota);
-        notaEdited.setNota(nota.getNota());
-        notaEdited.setMiembro(miembro);
-        notaEdited.setModulo(modulo);
-        notaEdited.evaluarAprobacion(notaEdited.getNota());
-
-
-        notaRepository.save(notaEdited);
-        return  notaEdited;
+        notaRepository.save(notaFind);
+        return  notaFind;
     }
+
+
+
 }

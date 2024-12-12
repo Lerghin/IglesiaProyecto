@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
+import lombok.ToString;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -23,8 +24,10 @@ public class Curso {
    private LocalDate fecha_fin;
    private String nombreCurso;
    @DBRef
+   @ToString.Exclude
    private  List<Miembro> participantes;
    @DBRef
+   @ToString.Exclude
    private  List<Professor> professor;
    private String descripcion;
    private List<Modulo> moduloList;

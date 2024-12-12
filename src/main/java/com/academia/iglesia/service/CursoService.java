@@ -16,7 +16,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class CursoService  implements  ICursoService{
@@ -251,7 +253,21 @@ public class CursoService  implements  ICursoService{
            throw new RuntimeException("El miembro no pertenece al curso");
     }
    }
-   
+
+   public Map<String, String> cedulasCursos(String idCurso){
+        Curso curso = this.find(idCurso);
+
+        Map<String, String> cedulasyNombres= new HashMap<>();
+        for(Miembro miembro: curso.getParticipantes()){
+            String cedula= new String();
+            cedula= miembro.getCedula();
+            String nombre= miembro.getNombre();
+            String apellido = miembro.getApellido();
+            String nombreApellido= nombre+ " " + apellido;
+            cedulasyNombres.put(cedula, nombreApellido);
+        }
+        return  cedulasyNombres;
+   }
 
 
 }
