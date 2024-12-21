@@ -23,7 +23,7 @@ public class AuthController {
     private final JwtService jwtService;
     private final IUserRepository userRepository;
 
-    @PostMapping("login")
+    @PostMapping("/login")
     public ResponseEntity<AuthResponse> login(@RequestBody LoginRequest request) {
         return ResponseEntity.ok(authService.login(request));
     }
