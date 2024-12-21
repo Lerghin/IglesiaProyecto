@@ -1,5 +1,6 @@
 package com.academia.iglesia.auth;
 
+
 import com.academia.iglesia.JWT.JwtService;
 import com.academia.iglesia.repository.IUserRepository;
 import jakarta.servlet.http.HttpServletRequest;
@@ -13,7 +14,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.web.bind.annotation.*;
 
-@CrossOrigin(origins = "https://dashboard-academy-church.vercel.app" )
+@CrossOrigin(origins = "https://dashboard-academy-church.vercel.app")
 @RestController
 @RequestMapping("/auth")
 @RequiredArgsConstructor
@@ -22,11 +23,11 @@ public class AuthController {
     private final JwtService jwtService;
     private final IUserRepository userRepository;
 
-
     @PostMapping("login")
-    public ResponseEntity<AuthResponse> login(@RequestBody LoginRequest request){
+    public ResponseEntity<AuthResponse> login(@RequestBody LoginRequest request) {
         return ResponseEntity.ok(authService.login(request));
     }
+
     @PostMapping("admin/register/user")
     public ResponseEntity<?> registerUser(@RequestBody RegisterRequest request) {
         try {
@@ -45,8 +46,6 @@ public class AuthController {
         }
     }
 
-
-
     @GetMapping("/username")
     public ResponseEntity<String> getUsername() {
         try {
@@ -63,6 +62,7 @@ public class AuthController {
             return ResponseEntity.status(500).body("Error al obtener el nombre de usuario: " + e.getMessage());
         }
     }
+
     @PostMapping("/logout")
     public String performLogout(HttpServletRequest request, HttpServletResponse response, Authentication authentication) {
         if (authentication != null) {

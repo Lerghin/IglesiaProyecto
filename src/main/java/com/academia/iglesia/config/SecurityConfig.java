@@ -1,5 +1,6 @@
 package com.academia.iglesia.config;
 
+
 import com.academia.iglesia.JWT.JwtAthenticationFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -27,6 +28,7 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
                 .csrf(csrf -> csrf.disable())
+                .cors(cors -> cors.configurationSource(corsConfigurationSource())) // Add this line
                 .authorizeHttpRequests(authRequest -> authRequest
                         .requestMatchers("/auth/**").permitAll()
                         .requestMatchers("/miembro/**").permitAll()
@@ -35,7 +37,7 @@ public class SecurityConfig {
                         .requestMatchers("/grupo/**").permitAll()
                         .requestMatchers("/nota/**").permitAll()
                         .requestMatchers("/pago/**").permitAll()
-                        .requestMatchers("/events/**").permitAll()/// Permitir acceso sin autenticación
+                        .requestMatchers("/events/**").permitAll() // Permitir acceso sin autenticación
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(sessionManager -> sessionManager
