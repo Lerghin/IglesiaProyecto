@@ -12,7 +12,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@CrossOrigin(origins = "https://dashboard-academy-church.vercel.app/")
+@CrossOrigin(origins = "https://dashboard-academy-church.vercel.app")
 @RestController
 @RequestMapping("/pago")
 public class PagoController {

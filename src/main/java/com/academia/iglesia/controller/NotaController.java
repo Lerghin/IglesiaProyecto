@@ -10,7 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-@CrossOrigin(origins = "https://dashboard-academy-church.vercel.app/")
+@CrossOrigin(origins = "https://dashboard-academy-church.vercel.app")
 @RestController
 @RequestMapping("/nota")
 public class NotaController {

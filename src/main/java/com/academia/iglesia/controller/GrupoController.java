@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
-@CrossOrigin(origins = "https://dashboard-academy-church.vercel.app/")
+@CrossOrigin(origins = "https://dashboard-academy-church.vercel.app")
 @RestController
 @RequestMapping("/grupo")
 public class GrupoController {
