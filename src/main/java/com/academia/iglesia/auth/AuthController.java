@@ -13,7 +13,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.web.bind.annotation.*;
 
-@CrossOrigin(origins = "http://localhost:3000" )
+@CrossOrigin(origins = "https://dashboard-academy-church.vercel.app" )
 @RestController
 @RequestMapping("/auth")
 @RequiredArgsConstructor
