@@ -36,7 +36,7 @@ public class AuthController {
         }
     }
 
-    @PostMapping("admin/register")
+    @PostMapping("/admin/register")
     public ResponseEntity<?> registerAdmin(@RequestBody RegisterRequest request) {
         try {
             return ResponseEntity.ok(authService.registerAdmin(request));
