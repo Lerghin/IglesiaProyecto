@@ -24,7 +24,7 @@ public class AuthController {
     public ResponseEntity<AuthResponse> login(@RequestBody LoginRequest request) {
         return ResponseEntity.ok(authService.login(request));
     }
-    @CrossOrigin(origins = "http://localhost:5173")
+    @CrossOrigin(origins = "https://dashboard-academy-church.vercel.app")
     @PostMapping("/register/user")
     public ResponseEntity<?> registerUser(@RequestBody RegisterRequest request) {
         try {
