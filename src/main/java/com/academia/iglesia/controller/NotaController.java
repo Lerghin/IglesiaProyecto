@@ -10,7 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-@CrossOrigin(origins = "http://localhost:3000/")
+@CrossOrigin(origins = "https://dashboard-academy-church.vercel.app/")
 @RestController
 @RequestMapping("/nota")
 public class NotaController {
@@ -86,7 +86,7 @@ public class NotaController {
     }
 
     @PutMapping("/{idNota}")
-    public Nota edit(@PathVariable String idNota, @RequestBody NotaMiembroDTO nota) throws  RuntimeException{
+    public Nota edit(@PathVariable String idNota, @RequestBody Nota nota) throws  RuntimeException{
        Nota existingNota =  notaService.find(idNota); // Check for existing member before edit
         if (existingNota == null) {
             throw new RuntimeException("Member with ID " + idNota + " not found");

@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "https://dashboard-academy-church.vercel.app/")
 @RestController
 @RequestMapping("/miembro")
 public class MiembroController {

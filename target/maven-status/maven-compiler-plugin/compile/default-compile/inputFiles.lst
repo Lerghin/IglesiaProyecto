@@ -1,67 +1,67 @@
-C:\Users\THOMAS\Documents\ler\church back\IglesiaProyecto\IglesiaProyecto\src\main\java\com\academia\iglesia\auth\AuthController.java
-C:\Users\THOMAS\Documents\ler\church back\IglesiaProyecto\IglesiaProyecto\src\main\java\com\academia\iglesia\auth\AuthResponse.java
-C:\Users\THOMAS\Documents\ler\church back\IglesiaProyecto\IglesiaProyecto\src\main\java\com\academia\iglesia\auth\AuthService.java
-C:\Users\THOMAS\Documents\ler\church back\IglesiaProyecto\IglesiaProyecto\src\main\java\com\academia\iglesia\auth\GlobalExceptionHandler.java
-C:\Users\THOMAS\Documents\ler\church back\IglesiaProyecto\IglesiaProyecto\src\main\java\com\academia\iglesia\auth\LoginRequest.java
-C:\Users\THOMAS\Documents\ler\church back\IglesiaProyecto\IglesiaProyecto\src\main\java\com\academia\iglesia\auth\RegisterRequest.java
-C:\Users\THOMAS\Documents\ler\church back\IglesiaProyecto\IglesiaProyecto\src\main\java\com\academia\iglesia\config\AplicationConfig.java
-C:\Users\THOMAS\Documents\ler\church back\IglesiaProyecto\IglesiaProyecto\src\main\java\com\academia\iglesia\config\CorsConfig.java
-C:\Users\THOMAS\Documents\ler\church back\IglesiaProyecto\IglesiaProyecto\src\main\java\com\academia\iglesia\config\SecurityConfig.java
-C:\Users\THOMAS\Documents\ler\church back\IglesiaProyecto\IglesiaProyecto\src\main\java\com\academia\iglesia\controller\CursoController.java
-C:\Users\THOMAS\Documents\ler\church back\IglesiaProyecto\IglesiaProyecto\src\main\java\com\academia\iglesia\controller\EventsController.java
-C:\Users\THOMAS\Documents\ler\church back\IglesiaProyecto\IglesiaProyecto\src\main\java\com\academia\iglesia\controller\GrupoController.java
-C:\Users\THOMAS\Documents\ler\church back\IglesiaProyecto\IglesiaProyecto\src\main\java\com\academia\iglesia\controller\MiembroController.java
-C:\Users\THOMAS\Documents\ler\church back\IglesiaProyecto\IglesiaProyecto\src\main\java\com\academia\iglesia\controller\ModuloController.java
-C:\Users\THOMAS\Documents\ler\church back\IglesiaProyecto\IglesiaProyecto\src\main\java\com\academia\iglesia\controller\NotaController.java
-C:\Users\THOMAS\Documents\ler\church back\IglesiaProyecto\IglesiaProyecto\src\main\java\com\academia\iglesia\controller\PagoController.java
-C:\Users\THOMAS\Documents\ler\church back\IglesiaProyecto\IglesiaProyecto\src\main\java\com\academia\iglesia\controller\ProfessorController.java
-C:\Users\THOMAS\Documents\ler\church back\IglesiaProyecto\IglesiaProyecto\src\main\java\com\academia\iglesia\dto\CursoDTO.java
-C:\Users\THOMAS\Documents\ler\church back\IglesiaProyecto\IglesiaProyecto\src\main\java\com\academia\iglesia\dto\GrupoDTO.java
-C:\Users\THOMAS\Documents\ler\church back\IglesiaProyecto\IglesiaProyecto\src\main\java\com\academia\iglesia\dto\MiembroCursoDTO.java
-C:\Users\THOMAS\Documents\ler\church back\IglesiaProyecto\IglesiaProyecto\src\main\java\com\academia\iglesia\dto\MiembroDTO.java
-C:\Users\THOMAS\Documents\ler\church back\IglesiaProyecto\IglesiaProyecto\src\main\java\com\academia\iglesia\dto\ModuloCursoDTO.java
-C:\Users\THOMAS\Documents\ler\church back\IglesiaProyecto\IglesiaProyecto\src\main\java\com\academia\iglesia\dto\ModuloDTO.java
-C:\Users\THOMAS\Documents\ler\church back\IglesiaProyecto\IglesiaProyecto\src\main\java\com\academia\iglesia\dto\ModuloNotaDTO.java
-C:\Users\THOMAS\Documents\ler\church back\IglesiaProyecto\IglesiaProyecto\src\main\java\com\academia\iglesia\dto\NotaMiembroDTO.java
-C:\Users\THOMAS\Documents\ler\church back\IglesiaProyecto\IglesiaProyecto\src\main\java\com\academia\iglesia\dto\PercentMiembrosDTO.java
-C:\Users\THOMAS\Documents\ler\church back\IglesiaProyecto\IglesiaProyecto\src\main\java\com\academia\iglesia\dto\ProfessorDTO.java
-C:\Users\THOMAS\Documents\ler\church back\IglesiaProyecto\IglesiaProyecto\src\main\java\com\academia\iglesia\IglesiaApplication.java
-C:\Users\THOMAS\Documents\ler\church back\IglesiaProyecto\IglesiaProyecto\src\main\java\com\academia\iglesia\JWT\JwtAthenticationFilter.java
-C:\Users\THOMAS\Documents\ler\church back\IglesiaProyecto\IglesiaProyecto\src\main\java\com\academia\iglesia\JWT\JwtService.java
-C:\Users\THOMAS\Documents\ler\church back\IglesiaProyecto\IglesiaProyecto\src\main\java\com\academia\iglesia\model\AprobacionCurso.java
-C:\Users\THOMAS\Documents\ler\church back\IglesiaProyecto\IglesiaProyecto\src\main\java\com\academia\iglesia\model\Curso.java
-C:\Users\THOMAS\Documents\ler\church back\IglesiaProyecto\IglesiaProyecto\src\main\java\com\academia\iglesia\model\Events.java
-C:\Users\THOMAS\Documents\ler\church back\IglesiaProyecto\IglesiaProyecto\src\main\java\com\academia\iglesia\model\Grupo.java
-C:\Users\THOMAS\Documents\ler\church back\IglesiaProyecto\IglesiaProyecto\src\main\java\com\academia\iglesia\model\Miembro.java
-C:\Users\THOMAS\Documents\ler\church back\IglesiaProyecto\IglesiaProyecto\src\main\java\com\academia\iglesia\model\Modulo.java
-C:\Users\THOMAS\Documents\ler\church back\IglesiaProyecto\IglesiaProyecto\src\main\java\com\academia\iglesia\model\Nota.java
-C:\Users\THOMAS\Documents\ler\church back\IglesiaProyecto\IglesiaProyecto\src\main\java\com\academia\iglesia\model\Pago.java
-C:\Users\THOMAS\Documents\ler\church back\IglesiaProyecto\IglesiaProyecto\src\main\java\com\academia\iglesia\model\Professor.java
-C:\Users\THOMAS\Documents\ler\church back\IglesiaProyecto\IglesiaProyecto\src\main\java\com\academia\iglesia\model\Sexo.java
-C:\Users\THOMAS\Documents\ler\church back\IglesiaProyecto\IglesiaProyecto\src\main\java\com\academia\iglesia\model\StatusMiembro.java
-C:\Users\THOMAS\Documents\ler\church back\IglesiaProyecto\IglesiaProyecto\src\main\java\com\academia\iglesia\model\User.java
-C:\Users\THOMAS\Documents\ler\church back\IglesiaProyecto\IglesiaProyecto\src\main\java\com\academia\iglesia\repository\EventsRepository.java
-C:\Users\THOMAS\Documents\ler\church back\IglesiaProyecto\IglesiaProyecto\src\main\java\com\academia\iglesia\repository\ICursoRepository.java
-C:\Users\THOMAS\Documents\ler\church back\IglesiaProyecto\IglesiaProyecto\src\main\java\com\academia\iglesia\repository\IGrupoRepository.java
-C:\Users\THOMAS\Documents\ler\church back\IglesiaProyecto\IglesiaProyecto\src\main\java\com\academia\iglesia\repository\IModuloRepository.java
-C:\Users\THOMAS\Documents\ler\church back\IglesiaProyecto\IglesiaProyecto\src\main\java\com\academia\iglesia\repository\INotaRepository.java
-C:\Users\THOMAS\Documents\ler\church back\IglesiaProyecto\IglesiaProyecto\src\main\java\com\academia\iglesia\repository\IPagoRepository.java
-C:\Users\THOMAS\Documents\ler\church back\IglesiaProyecto\IglesiaProyecto\src\main\java\com\academia\iglesia\repository\IUserRepository.java
-C:\Users\THOMAS\Documents\ler\church back\IglesiaProyecto\IglesiaProyecto\src\main\java\com\academia\iglesia\repository\MiembrosRepository.java
-C:\Users\THOMAS\Documents\ler\church back\IglesiaProyecto\IglesiaProyecto\src\main\java\com\academia\iglesia\repository\ProfessorRepository.java
-C:\Users\THOMAS\Documents\ler\church back\IglesiaProyecto\IglesiaProyecto\src\main\java\com\academia\iglesia\service\CursoService.java
-C:\Users\THOMAS\Documents\ler\church back\IglesiaProyecto\IglesiaProyecto\src\main\java\com\academia\iglesia\service\EventsService.java
-C:\Users\THOMAS\Documents\ler\church back\IglesiaProyecto\IglesiaProyecto\src\main\java\com\academia\iglesia\service\GrupoService.java
-C:\Users\THOMAS\Documents\ler\church back\IglesiaProyecto\IglesiaProyecto\src\main\java\com\academia\iglesia\service\ICursoService.java
-C:\Users\THOMAS\Documents\ler\church back\IglesiaProyecto\IglesiaProyecto\src\main\java\com\academia\iglesia\service\IEventService.java
-C:\Users\THOMAS\Documents\ler\church back\IglesiaProyecto\IglesiaProyecto\src\main\java\com\academia\iglesia\service\IGrupoService.java
-C:\Users\THOMAS\Documents\ler\church back\IglesiaProyecto\IglesiaProyecto\src\main\java\com\academia\iglesia\service\IMiembroService.java
-C:\Users\THOMAS\Documents\ler\church back\IglesiaProyecto\IglesiaProyecto\src\main\java\com\academia\iglesia\service\IModuloService.java
-C:\Users\THOMAS\Documents\ler\church back\IglesiaProyecto\IglesiaProyecto\src\main\java\com\academia\iglesia\service\INotaService.java
-C:\Users\THOMAS\Documents\ler\church back\IglesiaProyecto\IglesiaProyecto\src\main\java\com\academia\iglesia\service\IPagoService.java
-C:\Users\THOMAS\Documents\ler\church back\IglesiaProyecto\IglesiaProyecto\src\main\java\com\academia\iglesia\service\IProfessorService.java
-C:\Users\THOMAS\Documents\ler\church back\IglesiaProyecto\IglesiaProyecto\src\main\java\com\academia\iglesia\service\MiembroService.java
-C:\Users\THOMAS\Documents\ler\church back\IglesiaProyecto\IglesiaProyecto\src\main\java\com\academia\iglesia\service\ModuloService.java
-C:\Users\THOMAS\Documents\ler\church back\IglesiaProyecto\IglesiaProyecto\src\main\java\com\academia\iglesia\service\NotaService.java
-C:\Users\THOMAS\Documents\ler\church back\IglesiaProyecto\IglesiaProyecto\src\main\java\com\academia\iglesia\service\PagoService.java
-C:\Users\THOMAS\Documents\ler\church back\IglesiaProyecto\IglesiaProyecto\src\main\java\com\academia\iglesia\service\ProfessorService.java
+C:\Users\Dell\Documents\iglesiaProyecto\iglesia\src\main\java\com\academia\iglesia\auth\AuthController.java
+C:\Users\Dell\Documents\iglesiaProyecto\iglesia\src\main\java\com\academia\iglesia\auth\AuthResponse.java
+C:\Users\Dell\Documents\iglesiaProyecto\iglesia\src\main\java\com\academia\iglesia\auth\AuthService.java
+C:\Users\Dell\Documents\iglesiaProyecto\iglesia\src\main\java\com\academia\iglesia\auth\GlobalExceptionHandler.java
+C:\Users\Dell\Documents\iglesiaProyecto\iglesia\src\main\java\com\academia\iglesia\auth\LoginRequest.java
+C:\Users\Dell\Documents\iglesiaProyecto\iglesia\src\main\java\com\academia\iglesia\auth\RegisterRequest.java
+C:\Users\Dell\Documents\iglesiaProyecto\iglesia\src\main\java\com\academia\iglesia\config\AplicationConfig.java
+C:\Users\Dell\Documents\iglesiaProyecto\iglesia\src\main\java\com\academia\iglesia\config\CorsConfig.java
+C:\Users\Dell\Documents\iglesiaProyecto\iglesia\src\main\java\com\academia\iglesia\config\SecurityConfig.java
+C:\Users\Dell\Documents\iglesiaProyecto\iglesia\src\main\java\com\academia\iglesia\controller\CursoController.java
+C:\Users\Dell\Documents\iglesiaProyecto\iglesia\src\main\java\com\academia\iglesia\controller\EventsController.java
+C:\Users\Dell\Documents\iglesiaProyecto\iglesia\src\main\java\com\academia\iglesia\controller\GrupoController.java
+C:\Users\Dell\Documents\iglesiaProyecto\iglesia\src\main\java\com\academia\iglesia\controller\MiembroController.java
+C:\Users\Dell\Documents\iglesiaProyecto\iglesia\src\main\java\com\academia\iglesia\controller\ModuloController.java
+C:\Users\Dell\Documents\iglesiaProyecto\iglesia\src\main\java\com\academia\iglesia\controller\NotaController.java
+C:\Users\Dell\Documents\iglesiaProyecto\iglesia\src\main\java\com\academia\iglesia\controller\PagoController.java
+C:\Users\Dell\Documents\iglesiaProyecto\iglesia\src\main\java\com\academia\iglesia\controller\ProfessorController.java
+C:\Users\Dell\Documents\iglesiaProyecto\iglesia\src\main\java\com\academia\iglesia\dto\CursoDTO.java
+C:\Users\Dell\Documents\iglesiaProyecto\iglesia\src\main\java\com\academia\iglesia\dto\GrupoDTO.java
+C:\Users\Dell\Documents\iglesiaProyecto\iglesia\src\main\java\com\academia\iglesia\dto\MiembroCursoDTO.java
+C:\Users\Dell\Documents\iglesiaProyecto\iglesia\src\main\java\com\academia\iglesia\dto\MiembroDTO.java
+C:\Users\Dell\Documents\iglesiaProyecto\iglesia\src\main\java\com\academia\iglesia\dto\ModuloCursoDTO.java
+C:\Users\Dell\Documents\iglesiaProyecto\iglesia\src\main\java\com\academia\iglesia\dto\ModuloDTO.java
+C:\Users\Dell\Documents\iglesiaProyecto\iglesia\src\main\java\com\academia\iglesia\dto\ModuloNotaDTO.java
+C:\Users\Dell\Documents\iglesiaProyecto\iglesia\src\main\java\com\academia\iglesia\dto\NotaMiembroDTO.java
+C:\Users\Dell\Documents\iglesiaProyecto\iglesia\src\main\java\com\academia\iglesia\dto\PercentMiembrosDTO.java
+C:\Users\Dell\Documents\iglesiaProyecto\iglesia\src\main\java\com\academia\iglesia\dto\ProfessorDTO.java
+C:\Users\Dell\Documents\iglesiaProyecto\iglesia\src\main\java\com\academia\iglesia\IglesiaApplication.java
+C:\Users\Dell\Documents\iglesiaProyecto\iglesia\src\main\java\com\academia\iglesia\JWT\JwtAthenticationFilter.java
+C:\Users\Dell\Documents\iglesiaProyecto\iglesia\src\main\java\com\academia\iglesia\JWT\JwtService.java
+C:\Users\Dell\Documents\iglesiaProyecto\iglesia\src\main\java\com\academia\iglesia\model\AprobacionCurso.java
+C:\Users\Dell\Documents\iglesiaProyecto\iglesia\src\main\java\com\academia\iglesia\model\Curso.java
+C:\Users\Dell\Documents\iglesiaProyecto\iglesia\src\main\java\com\academia\iglesia\model\Events.java
+C:\Users\Dell\Documents\iglesiaProyecto\iglesia\src\main\java\com\academia\iglesia\model\Grupo.java
+C:\Users\Dell\Documents\iglesiaProyecto\iglesia\src\main\java\com\academia\iglesia\model\Miembro.java
+C:\Users\Dell\Documents\iglesiaProyecto\iglesia\src\main\java\com\academia\iglesia\model\Modulo.java
+C:\Users\Dell\Documents\iglesiaProyecto\iglesia\src\main\java\com\academia\iglesia\model\Nota.java
+C:\Users\Dell\Documents\iglesiaProyecto\iglesia\src\main\java\com\academia\iglesia\model\Pago.java
+C:\Users\Dell\Documents\iglesiaProyecto\iglesia\src\main\java\com\academia\iglesia\model\Professor.java
+C:\Users\Dell\Documents\iglesiaProyecto\iglesia\src\main\java\com\academia\iglesia\model\Sexo.java
+C:\Users\Dell\Documents\iglesiaProyecto\iglesia\src\main\java\com\academia\iglesia\model\StatusMiembro.java
+C:\Users\Dell\Documents\iglesiaProyecto\iglesia\src\main\java\com\academia\iglesia\model\User.java
+C:\Users\Dell\Documents\iglesiaProyecto\iglesia\src\main\java\com\academia\iglesia\repository\EventsRepository.java
+C:\Users\Dell\Documents\iglesiaProyecto\iglesia\src\main\java\com\academia\iglesia\repository\ICursoRepository.java
+C:\Users\Dell\Documents\iglesiaProyecto\iglesia\src\main\java\com\academia\iglesia\repository\IGrupoRepository.java
+C:\Users\Dell\Documents\iglesiaProyecto\iglesia\src\main\java\com\academia\iglesia\repository\IModuloRepository.java
+C:\Users\Dell\Documents\iglesiaProyecto\iglesia\src\main\java\com\academia\iglesia\repository\INotaRepository.java
+C:\Users\Dell\Documents\iglesiaProyecto\iglesia\src\main\java\com\academia\iglesia\repository\IPagoRepository.java
+C:\Users\Dell\Documents\iglesiaProyecto\iglesia\src\main\java\com\academia\iglesia\repository\IUserRepository.java
+C:\Users\Dell\Documents\iglesiaProyecto\iglesia\src\main\java\com\academia\iglesia\repository\MiembrosRepository.java
+C:\Users\Dell\Documents\iglesiaProyecto\iglesia\src\main\java\com\academia\iglesia\repository\ProfessorRepository.java
+C:\Users\Dell\Documents\iglesiaProyecto\iglesia\src\main\java\com\academia\iglesia\service\CursoService.java
+C:\Users\Dell\Documents\iglesiaProyecto\iglesia\src\main\java\com\academia\iglesia\service\EventsService.java
+C:\Users\Dell\Documents\iglesiaProyecto\iglesia\src\main\java\com\academia\iglesia\service\GrupoService.java
+C:\Users\Dell\Documents\iglesiaProyecto\iglesia\src\main\java\com\academia\iglesia\service\ICursoService.java
+C:\Users\Dell\Documents\iglesiaProyecto\iglesia\src\main\java\com\academia\iglesia\service\IEventService.java
+C:\Users\Dell\Documents\iglesiaProyecto\iglesia\src\main\java\com\academia\iglesia\service\IGrupoService.java
+C:\Users\Dell\Documents\iglesiaProyecto\iglesia\src\main\java\com\academia\iglesia\service\IMiembroService.java
+C:\Users\Dell\Documents\iglesiaProyecto\iglesia\src\main\java\com\academia\iglesia\service\IModuloService.java
+C:\Users\Dell\Documents\iglesiaProyecto\iglesia\src\main\java\com\academia\iglesia\service\INotaService.java
+C:\Users\Dell\Documents\iglesiaProyecto\iglesia\src\main\java\com\academia\iglesia\service\IPagoService.java
+C:\Users\Dell\Documents\iglesiaProyecto\iglesia\src\main\java\com\academia\iglesia\service\IProfessorService.java
+C:\Users\Dell\Documents\iglesiaProyecto\iglesia\src\main\java\com\academia\iglesia\service\MiembroService.java
+C:\Users\Dell\Documents\iglesiaProyecto\iglesia\src\main\java\com\academia\iglesia\service\ModuloService.java
+C:\Users\Dell\Documents\iglesiaProyecto\iglesia\src\main\java\com\academia\iglesia\service\NotaService.java
+C:\Users\Dell\Documents\iglesiaProyecto\iglesia\src\main\java\com\academia\iglesia\service\PagoService.java
+C:\Users\Dell\Documents\iglesiaProyecto\iglesia\src\main\java\com\academia\iglesia\service\ProfessorService.java
