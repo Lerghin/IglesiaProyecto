@@ -1,5 +1,6 @@
 package com.academia.iglesia.service;
 
+
 import com.academia.iglesia.dto.NotaMiembroDTO;
 import com.academia.iglesia.model.*;
 import com.academia.iglesia.repository.ICursoRepository;
@@ -98,23 +99,23 @@ public class NotaService implements  INotaService {
 
         List<NotaMiembroDTO> notaMiembroDTOS= new ArrayList<>();
 
-           for(Nota nota: notaList){
-               NotaMiembroDTO notaMiembroDTO= new NotaMiembroDTO();
-               notaMiembroDTO.setCedula(nota.getMiembro().getCedula());
-               notaMiembroDTO.setIdModulo(nota.getModulo().getIdModulo());
-               notaMiembroDTO.setAprobacionCurso(nota.getAprobacionCurso());
-               notaMiembroDTO.setIdNota(nota.getIdNota());
-               notaMiembroDTO.setNota(nota.getNota());
-               notaMiembroDTOS.add(notaMiembroDTO);
+        for(Nota nota: notaList){
+            NotaMiembroDTO notaMiembroDTO= new NotaMiembroDTO();
+            notaMiembroDTO.setCedula(nota.getMiembro().getCedula());
+            notaMiembroDTO.setIdModulo(nota.getModulo().getIdModulo());
+            notaMiembroDTO.setAprobacionCurso(nota.getAprobacionCurso());
+            notaMiembroDTO.setIdNota(nota.getIdNota());
+            notaMiembroDTO.setNota(nota.getNota());
+            notaMiembroDTOS.add(notaMiembroDTO);
 
-           }
+        }
 
         return notaMiembroDTOS;
     }
 
     @Override
     public void delete(String idNota) {
-   notaRepository.deleteById(idNota);
+        notaRepository.deleteById(idNota);
     }
 
     @Override

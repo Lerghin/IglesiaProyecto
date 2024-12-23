@@ -53,7 +53,9 @@ public class PagoService implements  IPagoService {
         Pago pagoFind= this.find(idPago);
         pagoFind.setFecha_pago(pago.getFecha_pago());
         pagoFind.setMetodoPago(pago.getMetodoPago());
-        pagoFind.setMiembro(pago.getMiembro());
+        Miembro miembro = miembrosRepository.findByCedula(pago.getMiembro().getCedula());
+        pagoFind.setMiembro(miembro);
+        pagoFind.setMonto(pago.getMonto());
         pagoFind.setReferencia(pago.getReferencia());
         pagoFind.setObservacion(pago.getObservacion());
         pagoRepository.save(pagoFind);
