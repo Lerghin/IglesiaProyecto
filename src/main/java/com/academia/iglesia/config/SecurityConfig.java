@@ -2,8 +2,8 @@ package com.academia.iglesia.config;
 
 
 
-import com.academia.iglesia.JWT.JwtAuthenticationFilter;
 
+import com.academia.iglesia.JWT.JwtAuthenticationFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -31,6 +31,8 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authRequest->
                         authRequest
                                 .requestMatchers("/auth/**").permitAll()
+                                .requestMatchers("/admin/**").hasAnyAuthority("ADMIN")
+                                .requestMatchers("/user/**").hasAnyAuthority("USER")
                                 .anyRequest().authenticated()
                 ).sessionManagement(sessionManager->
                         sessionManager

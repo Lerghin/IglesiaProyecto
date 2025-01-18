@@ -11,7 +11,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.web.bind.annotation.*;
-@CrossOrigin(origins = "https://dental-bricenio.vercel.app")
+@CrossOrigin(origins = "https://dashboard-academy-church.vercel.app")
 @RestController
 @RequestMapping("/auth")
 @RequiredArgsConstructor
@@ -24,7 +24,7 @@ public class AuthController {
     public ResponseEntity<AuthResponse> login(@RequestBody LoginRequest request){
         return ResponseEntity.ok(authService.login(request));
     }
-    @PostMapping("admin/register/user")
+    @PostMapping("/register/user")
     public ResponseEntity<?> registerUser(@RequestBody RegisterRequest request) {
         try {
             return ResponseEntity.ok(authService.registerUser(request));
@@ -33,7 +33,7 @@ public class AuthController {
         }
     }
 
-    @PostMapping("admin/register")
+    @PostMapping("/register")
     public ResponseEntity<?> registerAdmin(@RequestBody RegisterRequest request) {
         try {
             return ResponseEntity.ok(authService.registerAdmin(request));

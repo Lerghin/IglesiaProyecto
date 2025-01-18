@@ -5,6 +5,7 @@ import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
@@ -16,23 +17,28 @@ import java.util.List;
 public class User implements UserDetails {
     @Id
     private String idUser;
-    private String userName;
+    private String username;
     private String password;
+    private  String lastName;
+    private  String firstName;
+    private Integer cedula;
+    private Role role;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of();
-    }
-
-    @Override
-    public String getUsername() {
-        return userName;
+        return List.of(new SimpleGrantedAuthority((role.name())));
     }
 
     @Override
     public String getPassword() {
         return password;
     }
+
+    @Override
+    public String getUsername() {
+        return username;
+    }
+
 
     @Override
     public boolean isAccountNonExpired() {
@@ -53,4 +59,5 @@ public class User implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
 }

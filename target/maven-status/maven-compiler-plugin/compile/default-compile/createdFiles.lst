@@ -35,6 +35,7 @@ com\academia\iglesia\service\MiembroService.class
 com\academia\iglesia\auth\AuthService.class
 com\academia\iglesia\auth\GlobalExceptionHandler$InvalidCredentialsException.class
 com\academia\iglesia\auth\AuthResponse.class
+com\academia\iglesia\model\Role.class
 com\academia\iglesia\dto\PercentMiembrosDTO.class
 com\academia\iglesia\service\IEventService.class
 com\academia\iglesia\auth\RegisterRequest.class
