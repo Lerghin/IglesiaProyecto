@@ -11,6 +11,7 @@ com\academia\iglesia\model\User.class
 com\academia\iglesia\controller\PagoController.class
 com\academia\iglesia\model\Pago.class
 com\academia\iglesia\repository\ICursoRepository.class
+com\academia\iglesia\JWT\JwtAuthenticationFilter.class
 com\academia\iglesia\repository\EventsRepository.class
 com\academia\iglesia\service\IModuloService.class
 com\academia\iglesia\auth\AuthController.class
@@ -18,7 +19,6 @@ com\academia\iglesia\controller\CursoController.class
 com\academia\iglesia\dto\MiembroDTO.class
 com\academia\iglesia\model\Grupo.class
 com\academia\iglesia\auth\GlobalExceptionHandler$MissingDataException.class
-com\academia\iglesia\JWT\JwtAthenticationFilter.class
 com\academia\iglesia\model\Professor.class
 com\academia\iglesia\controller\ProfessorController.class
 com\academia\iglesia\service\IGrupoService.class

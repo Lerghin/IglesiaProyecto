@@ -26,7 +26,7 @@ C:\Users\Dell\Documents\iglesiaProyecto\iglesia\src\main\java\com\academia\igles
 C:\Users\Dell\Documents\iglesiaProyecto\iglesia\src\main\java\com\academia\iglesia\dto\PercentMiembrosDTO.java
 C:\Users\Dell\Documents\iglesiaProyecto\iglesia\src\main\java\com\academia\iglesia\dto\ProfessorDTO.java
 C:\Users\Dell\Documents\iglesiaProyecto\iglesia\src\main\java\com\academia\iglesia\IglesiaApplication.java
-C:\Users\Dell\Documents\iglesiaProyecto\iglesia\src\main\java\com\academia\iglesia\JWT\JwtAthenticationFilter.java
+C:\Users\Dell\Documents\iglesiaProyecto\iglesia\src\main\java\com\academia\iglesia\JWT\JwtAuthenticationFilter.java
 C:\Users\Dell\Documents\iglesiaProyecto\iglesia\src\main\java\com\academia\iglesia\JWT\JwtService.java
 C:\Users\Dell\Documents\iglesiaProyecto\iglesia\src\main\java\com\academia\iglesia\model\AprobacionCurso.java
 C:\Users\Dell\Documents\iglesiaProyecto\iglesia\src\main\java\com\academia\iglesia\model\Curso.java
