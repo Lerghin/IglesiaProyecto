@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin(origins = "https://dashboard-academy-church.vercel.app")
+
 @RestController
 @RequestMapping("/events")
 public class EventsController {
@@ -20,6 +20,16 @@ public class EventsController {
     @GetMapping("/get")
     public List<Events> get() throws  RuntimeException{
         List<Events> eventsList= eventService.get();
+        if(eventsList.isEmpty()){
+            throw new RuntimeException("No events found");
+        }
+
+        return eventsList;
+    }
+    @GetMapping("/get/30")
+    public List<Events> get30days() throws  RuntimeException{
+        List<Events> eventsList= eventService.get30();
+
         if(eventsList.isEmpty()){
             throw new RuntimeException("No events found");
         }

@@ -32,6 +32,7 @@ public class SecurityConfig {
                                 .requestMatchers("/auth/**").permitAll()
                                 .requestMatchers("/admin/**").permitAll()
                                 .requestMatchers("/user/**").permitAll()
+                                .requestMatchers("/events/**").permitAll()
                                 .anyRequest().permitAll()
                 )
                 .sessionManagement(sessionManager ->
