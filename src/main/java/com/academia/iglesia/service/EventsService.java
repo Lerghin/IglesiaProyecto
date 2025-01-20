@@ -21,7 +21,7 @@ public class EventsService implements  IEventService {
         List<Events> eventsList= eventsRepository.findAll();
         return eventsList;
     }
-    public List<Events> get30() {
+  /*  public List<Events> get30() {
 
         List<Events> eventsList= eventsRepository.findAll();
         List<Events> eventsList30= new ArrayList<>();
@@ -35,6 +35,14 @@ public class EventsService implements  IEventService {
         }
         return eventsList30;
     }
+*/
+    @Override
+    public List<Events> get30() {
+        LocalDate today = LocalDate.now();
+        LocalDate next60Days = today.plusDays(60);
+        return eventsRepository.findEventsInNext60Days(today, next60Days);
+    }
+
 
     @Override
     public void save(Events events) {
