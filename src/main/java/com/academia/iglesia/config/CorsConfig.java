@@ -13,8 +13,8 @@ public class CorsConfig implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-               // .allowedOrigins("https://dashboard-academy-church.vercel.app") // Origen explícito
-                .allowedOrigins("http://localhost:3000") // Origen explícito
+                .allowedOrigins("https://dashboard-academy-church.vercel.app") // Origen explícito
+                //.allowedOrigins("http://localhost:3000") // Origen explícito
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                 .allowedHeaders("*")
                 .allowCredentials(true); // Permite el uso de credenciales
